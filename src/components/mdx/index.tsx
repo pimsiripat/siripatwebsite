@@ -251,7 +251,7 @@ function Step({
   return (
     <div className="flex items-start gap-3">
       <span className="text-accent mt-1">{number}.</span>
-      <p>{children}</p>
+      <div>{children}</div>
     </div>
   );
 }
@@ -264,7 +264,7 @@ function ImpactItem({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-start gap-3">
       <span className="text-accent mt-1">&bull;</span>
-      <p>{children}</p>
+      <div>{children}</div>
     </div>
   );
 }
@@ -301,14 +301,15 @@ export const mdxComponents = {
   p: ({ children }: { children?: React.ReactNode }) => (
     <p className="text-muted leading-relaxed mb-6 last:mb-0">{children}</p>
   ),
-  img: ({ src, alt }: { src?: string; alt?: string }) => (
-    <span className="block relative aspect-[16/9] rounded-xl overflow-hidden bg-subtle my-8">
-      <Image
-        src={src || ""}
-        alt={alt || ""}
-        fill
-        className="object-contain"
-      />
-    </span>
-  ),
+  img: ({ src, alt }: { src?: string; alt?: string }) =>
+    src ? (
+      <span className="block relative aspect-[16/9] rounded-xl overflow-hidden bg-subtle my-8">
+        <Image
+          src={src}
+          alt={alt || ""}
+          fill
+          className="object-contain"
+        />
+      </span>
+    ) : null,
 };
