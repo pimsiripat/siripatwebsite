@@ -1,33 +1,49 @@
+import ScrollReveal from "@/components/ScrollReveal";
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center -mt-20 bg-foreground overflow-hidden">
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-foreground to-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+    <section className="relative min-h-screen flex flex-col justify-end px-6 lg:px-[60px] pb-[100px] overflow-hidden">
+      {/* Subtle warm radial gradients */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: [
+            "radial-gradient(ellipse 800px 600px at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse 600px 400px at 80% 20%, rgba(139,105,20,0.06) 0%, transparent 70%)",
+          ].join(", "),
+        }}
+      />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 lg:px-8 max-w-4xl mx-auto">
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium font-heading leading-tight tracking-tight mb-8 text-white">
-          Siripat — UX/UI Designer
-        </h1>
-        <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-12">
-          Creating intuitive, user-centered experiences through research,
-          strategy, and thoughtful design.
-        </p>
-        <div className="flex items-center justify-center gap-4">
-          <a
-            href="/projects"
-            className="px-6 py-3 bg-white text-foreground text-sm font-medium rounded-md hover:bg-white/90 transition-colors"
-          >
-            All projects
-          </a>
-          <a
-            href="/#contact"
-            className="px-6 py-3 border border-white/30 text-white text-sm font-medium rounded-md hover:bg-white/10 transition-colors"
-          >
-            Contact
-          </a>
-        </div>
+      {/* Content — bottom-left aligned like reference */}
+      <div className="relative z-10">
+        <ScrollReveal>
+          <p className="text-[10px] tracking-[4px] uppercase text-foreground/35 mb-4">
+            UX / UI Designer &nbsp;&middot;&nbsp; Bangkok, Thailand
+          </p>
+        </ScrollReveal>
+
+        <ScrollReveal delay={200}>
+          <h1 className="font-heading leading-[0.9] mb-0">
+            <span className="block text-[clamp(48px,9vw,108px)] font-light italic text-foreground">
+              Siripat
+            </span>
+            <span className="block text-[clamp(48px,9vw,108px)] font-light italic text-pale-gold">
+              Portfolio
+            </span>
+          </h1>
+        </ScrollReveal>
+
+        <ScrollReveal delay={500}>
+          <div className="flex items-center gap-6 mt-8">
+            <div
+              className="flex-1 h-px max-w-[600px]"
+              style={{ background: "linear-gradient(to right, var(--gold), transparent)" }}
+            />
+            <span className="text-[10px] tracking-[3px] uppercase text-foreground/35 whitespace-nowrap">
+              Designing with intention &middot; 2025
+            </span>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

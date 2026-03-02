@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <>
-      <Navbar variant="light" />
+      <Navbar />
       <main className="pt-20">
         <section className="py-24">
           <div className="max-w-5xl mx-auto px-6 lg:px-8">

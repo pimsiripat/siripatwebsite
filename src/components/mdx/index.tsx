@@ -56,7 +56,7 @@ function ProjectImage({
 }) {
   return (
     <div className="max-w-6xl mx-auto mt-8">
-      <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-subtle">
+      <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-card">
         <Image
           src={src}
           alt={alt}
@@ -303,7 +303,7 @@ export const mdxComponents = {
   ),
   img: ({ src, alt }: { src?: string; alt?: string }) =>
     src ? (
-      <span className="block relative aspect-[16/9] rounded-xl overflow-hidden bg-subtle my-8">
+      <span className="block relative aspect-[16/9] rounded-xl overflow-hidden bg-card my-8">
         <Image
           src={src}
           alt={alt || ""}

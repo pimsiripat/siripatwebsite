@@ -44,13 +44,13 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <>
-      <Navbar variant="light" />
+      <Navbar />
       <main className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
         <section className="pt-8 pb-16 px-6">
           <div className="max-w-5xl mx-auto">
             <div className="mb-8">
-              <p className="text-xs text-muted uppercase tracking-wider mb-4">
+              <p className="text-xs text-gold uppercase tracking-wider mb-4">
                 {frontmatter.category}
               </p>
               <h1 className="text-5xl md:text-6xl font-bold font-heading mb-6">
@@ -65,7 +65,7 @@ export default async function ProjectPage({ params }: Props) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-y border-subtle">
               {Object.entries(frontmatter.meta).map(([key, value]) => (
                 <div key={key}>
-                  <p className="text-xs text-muted uppercase tracking-wider mb-1">
+                  <p className="text-xs text-gold uppercase tracking-wider mb-1">
                     {key}
                   </p>
                   <p className="font-medium">{value}</p>
@@ -78,7 +78,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* Hero Image */}
         <section className="px-6 pb-16">
           <div className="max-w-6xl mx-auto">
-            <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-subtle">
+            <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-card">
               <Image
                 src={frontmatter.heroImage}
                 alt={`${frontmatter.title} Mockup`}
@@ -106,7 +106,7 @@ export default async function ProjectPage({ params }: Props) {
           <div className="max-w-3xl mx-auto text-center">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 rounded-lg font-medium hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 bg-accent text-background px-8 py-4 rounded-lg font-medium hover:bg-pale-gold transition-colors"
             >
               <svg
                 className="w-4 h-4"
