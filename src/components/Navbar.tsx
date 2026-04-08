@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Logo from "./Logo";
 
 const navLinks = [
   { name: "About", href: "/#about" },
@@ -28,9 +29,10 @@ export default function Navbar() {
       <div className="px-6 lg:px-[60px] py-5 lg:py-6 flex items-center justify-between">
         <a
           href="/"
-          className="font-heading font-bold text-[1.4rem] text-green bg-pink-light px-[18px] py-1.5 rounded-full tracking-[0.02em]"
+          className="inline-flex items-center transition-transform duration-200 hover:-translate-y-0.5"
+          aria-label="Pim — Home"
         >
-          Pim
+          <Logo size={44} />
         </a>
 
         <ul className="hidden md:flex items-center gap-9 list-none">
