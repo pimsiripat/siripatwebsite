@@ -2,12 +2,14 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="px-6 lg:px-[60px] py-8 flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-gold/8">
-      <p className="text-[9px] tracking-[2px] uppercase text-foreground/20">
-        &copy; {currentYear} Siripat
+    <footer className="bg-dark text-white text-center py-10 px-6 opacity-90">
+      <p className="text-[0.9rem]">
+        Designed with <span className="text-green">&hearts;</span> by{" "}
+        <strong>Siripat Anukool (Pim)</strong> &middot; UX/UI Designer &middot;
+        Bangkok, Thailand
       </p>
-      <p className="text-[9px] tracking-[2px] uppercase text-foreground/20">
-        Designed with intention
+      <p className="mt-2 opacity-50 text-[0.8rem]">
+        &copy; {currentYear} All rights reserved
       </p>
     </footer>
   );

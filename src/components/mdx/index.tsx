@@ -11,7 +11,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className={`px-6 py-16 ${bg === "card" ? "bg-card" : ""}`}>
+    <section className={`px-6 py-16 ${bg === "card" ? "bg-pink-light" : ""}`}>
       {children}
     </section>
   );
@@ -56,7 +56,7 @@ function ProjectImage({
 }) {
   return (
     <div className="max-w-6xl mx-auto mt-8">
-      <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-card">
+      <div className="relative aspect-[16/9] rounded-[28px] overflow-hidden bg-pink-light">
         <Image
           src={src}
           alt={alt}
@@ -154,7 +154,7 @@ function StatsGrid({
   items: { label: string; value: string }[];
   cardBg?: "background" | "card";
 }) {
-  const bgClass = cardBg === "background" ? "bg-background" : "bg-card";
+  const bgClass = cardBg === "background" ? "bg-cream" : "bg-pink-light";
   return (
     <div className="grid md:grid-cols-3 gap-6 mb-12">
       {items.map((item) => (
@@ -303,7 +303,7 @@ export const mdxComponents = {
   ),
   img: ({ src, alt }: { src?: string; alt?: string }) =>
     src ? (
-      <span className="block relative aspect-[16/9] rounded-xl overflow-hidden bg-card my-8">
+      <span className="block relative aspect-[16/9] rounded-[28px] overflow-hidden bg-pink-light my-8">
         <Image
           src={src}
           alt={alt || ""}

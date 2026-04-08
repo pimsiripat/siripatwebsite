@@ -2,57 +2,56 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-[140px] px-6 lg:px-[60px] pb-[100px] text-center relative">
-      {/* Gold gradient divider */}
-      <div
-        className="absolute top-0 left-[60px] right-[60px] h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)" }}
-      />
+    <section id="contact" className="py-[100px] px-6 lg:px-[60px] bg-cream">
+      <div className="max-w-[1100px] mx-auto">
+        <ScrollReveal>
+          <div className="text-center">
+            <p className="text-[0.78rem] font-bold text-green uppercase tracking-[0.15em] mb-3">
+              Get In Touch
+            </p>
+            <h2 className="font-heading text-[clamp(2rem,3.5vw,2.8rem)] font-bold leading-[1.2] text-dark mb-4">
+              Let&apos;s create something
+              <br />
+              <em className="text-green">beautiful</em> together
+            </h2>
+            <p className="text-mid text-[1rem] leading-[1.8] max-w-[480px] mx-auto mb-12">
+              Have a project in mind or just want to say hello? I&apos;d love to
+              connect — feel free to reach out anytime!
+            </p>
+          </div>
+        </ScrollReveal>
 
-      <ScrollReveal>
-        <p className="text-[40px] font-heading font-light italic text-foreground mb-10">
-          &ldquo;Let&apos;s make something considered.&rdquo;
-        </p>
-      </ScrollReveal>
-
-      <ScrollReveal delay={100}>
-        <a
-          href="mailto:hello@example.com"
-          className="inline-block text-[22px] font-light text-foreground/50 relative group mb-12 transition-colors hover:text-gold"
-        >
-          hello@example.com
-          <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold transition-all duration-250 ease-out group-hover:w-full" />
-        </a>
-      </ScrollReveal>
-
-      <ScrollReveal delay={200}>
-        <div className="flex justify-center items-center gap-5">
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[10px] tracking-[2px] uppercase text-foreground/35 hover:text-foreground transition-colors"
-          >
-            LinkedIn
-          </a>
-          <span className="text-gold/30 text-xs">&middot;</span>
-          <a
-            href="https://dribbble.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[10px] tracking-[2px] uppercase text-foreground/35 hover:text-foreground transition-colors"
-          >
-            Dribbble
-          </a>
-          <span className="text-gold/30 text-xs">&middot;</span>
-          <a
-            href="#"
-            className="text-[10px] tracking-[2px] uppercase text-foreground/35 hover:text-foreground transition-colors"
-          >
-            Resume
-          </a>
-        </div>
-      </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <div className="flex justify-center gap-7 flex-wrap">
+            <a
+              href="mailto:hello@example.com"
+              className="project-card-interactive flex flex-col items-center gap-2.5 bg-pink-light border-2 border-transparent rounded-[28px] px-[52px] py-9 text-dark transition-all duration-250 hover:bg-green hover:text-white hover:border-green hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(134,167,136,0.3)] min-w-[220px]"
+            >
+              <span className="text-[2.2rem]">✉️</span>
+              <span className="text-[0.75rem] font-bold uppercase tracking-[0.12em] opacity-60">
+                Email
+              </span>
+              <span className="text-[0.95rem] font-semibold">
+                hello@example.com
+              </span>
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-card-interactive flex flex-col items-center gap-2.5 bg-pink-light border-2 border-transparent rounded-[28px] px-[52px] py-9 text-dark transition-all duration-250 hover:bg-green hover:text-white hover:border-green hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(134,167,136,0.3)] min-w-[220px]"
+            >
+              <span className="text-[2.2rem]">💼</span>
+              <span className="text-[0.75rem] font-bold uppercase tracking-[0.12em] opacity-60">
+                LinkedIn
+              </span>
+              <span className="text-[0.95rem] font-semibold">
+                Siripat Anukool
+              </span>
+            </a>
+          </div>
+        </ScrollReveal>
+      </div>
     </section>
   );
 }

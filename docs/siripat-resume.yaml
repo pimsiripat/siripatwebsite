@@ -1,0 +1,202 @@
+cv:
+  name: Siripat Anukool
+  phone: tel:+66654194429
+  email: siripat.anukool@gmail.com
+  custom_connections:
+    - fontawesome_icon: globe
+      placeholder: "Portfolio"
+      url: https://www.notion.so/siripat/Siripat-Anukool-2ae634974523800babdad4bb319da373
+  social_networks:
+    - network: LinkedIn
+      username: siripat-anukool
+
+  sections:
+    summary:
+      - "UX/UI Designer with end-to-end experience across healthcare and finance, having led research with 21+ participants through to launch-ready Figma prototypes. A background spanning B2B enterprise sales and one-on-one education brings a rare combination: stakeholder fluency across C-suite to end users, and the ability to synthesize qualitative insight into decisions — both critical to UX research and cross-functional collaboration. Proficient in usability testing, information architecture, and WCAG 2.1 AA accessibility standards."
+
+    projects:
+      - name: "Pawtopia Hospital — Pet Healthcare Management Platform"
+        url: https://www.notion.so/siripat/Pawtopia-Hospital-2b063497452380eebb03f49a86c9d0e0
+        start_date: 2025-06
+        end_date: 2025-08
+        highlights:
+          - "Conducted user research with 6 participants (4 pet owners, 2 veterinarians), surfacing 4 key pain points that shaped the platform's core feature set"
+          - "Developed 2 research-backed personas distinguishing active and first-time pet owners, directly informing 3 core feature prioritization decisions across appointment booking and medical record access"
+          - "Designed paper wireframes, digital wireframes, and an interactive Figma prototype across 3 iterative cycles"
+          - "Led 2 usability test rounds with 6 participants, driving a redesign that improved appointment confirmation clarity by 40% and reduced medical record retrieval steps by 3"
+          - "Implemented WCAG 2.1 AA standards — 4.5:1 contrast ratio, 44px touch targets, and screen reader compatibility — ensuring inclusive access across device types"
+
+      - name: "LEDGER — Personal Finance Tracking App"
+        url: https://www.notion.so/siripat/LEDGER-2ae6349745238102bfc2edb9a5338d37
+        start_date: 2025-08
+        end_date: 2025-10
+        highlights:
+          - "Conducted research with 15 participants (5 interviews, 10 surveys), identifying navigation friction as the root pain point — informing the decision to consolidate 4 screens into a single-screen dashboard"
+          - "Designed the single-screen dashboard featuring net balance, recent transactions, and spending charts, eliminating the navigation friction identified in research"
+          - "Ran usability testing with 5 participants, identifying 4 pain points and iterating to sharpen category selection and income/expense differentiation"
+          - "Applied WCAG 2.1 AA standards — high-contrast color schemes and full keyboard navigation — ensuring compliance for users with visual and motor impairments"
+
+    certifications:
+      - label: "Google UX Design Professional Certificate"
+        details: "Google · Coursera · 2024"
+      - label: "UX Research and Information Architecture"
+        details: "IBM · Coursera · 2024"
+      - label: "Customer Journey Mapping"
+        details: "Skooldio · 2024"
+      - label: "UI Design with Figma"
+        details: "Skooldio · 2025"
+      - label: "Intro to User Experience Design"
+        details: "Skooldio · 2025"
+      - label: "UX Writing"
+        details: "Skooldio · 2024"
+
+    experience:
+      - company: Eye Level Chonburi
+        position: Tutor
+        start_date: 2024-07
+        end_date: present
+        highlights:
+          - "Design personalized learning experiences through structured observation and qualitative user interviews — applying core UX research methods — lifting student engagement scores 25%"
+          - "Build student progress dashboards in Notion using information architecture principles, cutting report creation time 30%"
+          - "Develop individualized feedback frameworks from weekly session data, improving satisfaction scores in quarterly parent reviews through iterative, insight-driven design"
+
+      - company: "Amita Technology (Thailand) Co., Ltd."
+        position: "Sales Executive & Marketing"
+        start_date: 2023-08
+        end_date: 2024-06
+        highlights:
+          - "Analyzed market and user trends in renewable energy and EV sectors, compiling findings into a slide deck and market report presented to C-level leadership"
+          - "Designed and managed website and social media content in Canva and Photoshop, increasing audience engagement by 35%"
+          - "Translated complex technical specifications into clear, stakeholder-appropriate narratives for 500+ enterprise clients — from C-suite to end users — developing the audience-analysis and communication skills central to UX research synthesis and stakeholder management"
+
+    education:
+      - institution: Burapha University
+        area: English (Literature)
+        degree: B.A.
+        start_date: 2019
+        end_date: 2023
+        highlights: []
+
+    skills:
+      - label: Design Tools
+        details: "Figma (proficient), Canva, Adobe Photoshop, Adobe Illustrator, Notion"
+      - label: UX Skills
+        details: "User Research, User Interviews, Surveys, Wireframing, Prototyping, Interactive Prototypes, Usability Testing, Information Architecture, User Journey Mapping, Persona Development, Accessibility Design, WCAG Compliance, Interaction Design, Visual Design, Iterative Design"
+      - label: Core Competencies
+        details: "Problem Solving, Critical Thinking, Stakeholder Communication, Cross-functional Collaboration, Data Analysis, User Empathy"
+      - label: Languages
+        details: "Thai (native), English (fluent — excellent reading/writing; good speaking/listening)"
+
+design:
+  theme: engineeringclassic
+
+  page:
+    size: a4
+    top_margin: 0.4in
+    bottom_margin: 0.4in
+    left_margin: 0.4in
+    right_margin: 0.4in
+    show_footer: false
+    show_top_note: false
+
+  colors:
+    body: rgb(0, 0, 0)
+    name: rgb(55, 123, 181)
+    headline: rgb(55, 123, 181)
+    connections: rgb(0, 0, 0)
+    section_titles: rgb(55, 123, 181)
+    links: rgb(0, 0, 0)
+    footer: rgb(128, 128, 128)
+    top_note: rgb(0, 0, 0)
+
+  typography:
+    line_spacing: 0.4em
+    alignment: justified 
+    date_and_location_column_alignment: right
+    font_family:
+      body: Source Sans 3
+      name: Source Sans 3
+      headline: Source Sans 3
+      connections: Source Sans 3
+      section_titles: Source Sans 3
+    font_size:
+      body: 11pt
+      name: 30pt
+      headline: 11pt
+      connections: 11pt
+      section_titles: 1.15em
+    small_caps:
+      name: false
+      headline: false
+      connections: false
+      section_titles: false
+    bold:
+      name: true
+      headline: false
+      connections: false
+      section_titles: true
+
+  header:
+    alignment: center
+    space_below_name: 0.5cm
+    space_below_headline: 0.5cm
+    space_below_connections: 0.5cm
+    connections:
+      phone_number_format: international
+      hyperlink: true
+      show_icons: false
+      display_urls_instead_of_usernames: true
+      separator: '|'
+      space_between_connections: 0.2cm
+
+  section_titles:
+    type: with_full_line
+    line_thickness: 1pt
+    space_above: 0.5cm
+    space_below: 0.3cm
+
+  sections:
+    allow_page_break: true
+    space_between_regular_entries: 1.1em
+    space_between_text_based_entries: 0.3em
+
+  entries:
+    date_and_location_width: 4.15cm
+    side_space: 0cm
+    space_between_columns: 0.1cm
+    allow_page_break: false
+    short_second_row: false
+    summary:
+      space_above: 0cm
+      space_left: 0cm
+    highlights:
+      bullet: •
+      nested_bullet: •
+      space_left: 0.1cm
+      space_above: 0.1cm
+      space_between_items: 0.15cm
+      space_between_bullet_and_text: 0.15em
+
+  templates: 
+    date_range: START_DATE – END_DATE
+    one_line_entry:
+      main_column: '**LABEL:** DETAILS'
+    education_entry:
+      main_column: |-
+        **INSTITUTION** - DEGREE in AREA 
+      date_and_location_column: |-
+        DATE
+    normal_entry:
+      main_column: |-
+        **NAME**
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column: |-
+        DATE
+    experience_entry:
+      main_column: |-
+        **POSITION** -- COMPANY
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column: |-
+        DATE
