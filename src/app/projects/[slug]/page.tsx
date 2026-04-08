@@ -98,6 +98,7 @@ export default async function ProjectPage({ params }: Props) {
             mdxOptions: {
               remarkPlugins: [remarkGfm],
             },
+            blockJS: false,
           }}
         />
 
