@@ -113,65 +113,6 @@ function ProjectImage({
   );
 }
 
-// --- Stub Components (removed, kept for backward compat until MDX files are updated) ---
-
-function Section({ children }: { children?: React.ReactNode }) {
-  return <div className="mb-8">{children}</div>;
-}
-function Narrow({ children }: { children?: React.ReactNode }) {
-  return <div className="max-w-3xl mx-auto">{children}</div>;
-}
-function Wide({ children }: { children?: React.ReactNode }) {
-  return <div className="max-w-5xl mx-auto">{children}</div>;
-}
-function TwoColumn({ children }: { children?: React.ReactNode }) {
-  return <div className="grid md:grid-cols-2 gap-10 mb-8">{children}</div>;
-}
-function Column({ children }: { children?: React.ReactNode }) {
-  return <div>{children}</div>;
-}
-function PainPoint({ title, children }: { title: string; children?: React.ReactNode }) {
-  return (
-    <div className="border-l-2 border-accent pl-5 mb-6">
-      <p className="font-semibold text-fg mb-1">{title}</p>
-      {children && <div className="text-muted text-sm leading-relaxed [&>p]:mb-0">{children}</div>}
-    </div>
-  );
-}
-function AccessibilityGrid({ children }: { children?: React.ReactNode }) {
-  return <div className="grid md:grid-cols-3 gap-8 mb-8">{children}</div>;
-}
-function AccessibilityItem({ title, children }: { title: string; icon?: string; children?: React.ReactNode }) {
-  return (
-    <div>
-      <p className="font-semibold text-fg mb-2">{title}</p>
-      <div className="text-muted text-sm">{children}</div>
-    </div>
-  );
-}
-function NextSteps({ children }: { children?: React.ReactNode }) {
-  return <div className="space-y-3 text-muted mb-8">{children}</div>;
-}
-function Step({ number, children }: { number: number; children?: React.ReactNode }) {
-  return (
-    <div className="flex items-start gap-3">
-      <span className="text-accent mt-1">{number}.</span>
-      <div>{children}</div>
-    </div>
-  );
-}
-function ImpactList({ children }: { children?: React.ReactNode }) {
-  return <div className="space-y-3 text-muted mb-6">{children}</div>;
-}
-function ImpactItem({ children }: { children?: React.ReactNode }) {
-  return (
-    <div className="flex items-start gap-3">
-      <span className="text-accent mt-1">&bull;</span>
-      <div>{children}</div>
-    </div>
-  );
-}
-
 // --- MDX Component Mapping ---
 
 export const mdxComponents = {
@@ -182,19 +123,6 @@ export const mdxComponents = {
   TwoCol,
   FigmaLink,
   ProjectImage,
-  // Stub components (backward compat — will be removed after Tasks 5-6)
-  Section,
-  Narrow,
-  Wide,
-  TwoColumn,
-  Column,
-  PainPoint,
-  AccessibilityGrid,
-  AccessibilityItem,
-  NextSteps,
-  Step,
-  ImpactList,
-  ImpactItem,
   // Markdown element overrides
   h2: ({ children }: { children?: React.ReactNode }) => (
     <div className="max-w-3xl mx-auto mt-16 mb-8">
