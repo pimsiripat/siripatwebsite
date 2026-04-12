@@ -19,7 +19,7 @@
   --color-surface: var(--surface);
   --color-border: var(--border);
   --font-sans: var(--font-dm-sans);
-  --font-heading: var(--font-instrument-serif);
+  --font-heading: var(--font-plus-jakarta);
 }
 
 body {
@@ -30,7 +30,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
 }
 
 html {
