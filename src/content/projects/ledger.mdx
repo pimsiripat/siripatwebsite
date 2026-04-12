@@ -10,39 +10,28 @@ meta:
   Type: "Case Study"
 ---
 
-<Section>
-<Narrow>
-
 ## Overview
 
 Ledger is designed for salarymen, freelancers, gig workers, junior professionals (ages 20–35), and individuals new to personal finance who want low-friction tracking. Users can view their cash flow at a glance, focusing on minimal data entry, quick insights, and simple categories.
 
-</Narrow>
-</Section>
+## The Challenge
 
-<Section bg="card">
-<Narrow>
-<TwoColumn>
-<Column>
+<TwoCol>
+<div>
 
 ### The Problem
 
 Many young professionals track money in messy ways (notes, bank apps, multiple receipts). They want a low-effort app to see: "How much did I actually earn and spend this month?" without complex accounting.
 
-</Column>
-<Column>
+</div>
+<div>
 
 ### The Goal
 
 Create an MVP income & expense recorder that surfaces total income, total expenses, net balance, recent transactions, and simple spending charts — all in a single Overview screen.
 
-</Column>
-</TwoColumn>
-</Narrow>
-</Section>
-
-<Section>
-<Narrow>
+</div>
+</TwoCol>
 
 ## Understanding the User
 
@@ -51,28 +40,22 @@ Create an MVP income & expense recorder that surfaces total income, total expens
 Conducted 5 remote interviews and 10 survey responses.
 
 <Callout>
-Key findings: users want speed (add transaction in under 15 seconds), clear categories, and visual cues for overspending. Assumptions about accountant-like features were reduced after research — users preferred simplicity.
+**Key findings:** users want speed (add transaction in under 15 seconds), clear categories, and visual cues for overspending. Assumptions about accountant-like features were reduced after research — users preferred simplicity.
 </Callout>
 
 ### Pain Points
 
-<PainPoint title="1. Entering transactions is slow on mobile">
+<Finding title="1. Entering transactions is slow on mobile">
 Solution: quick add with suggested amounts and smart category detection.
-</PainPoint>
+</Finding>
 
-<PainPoint title="2. Hard to see net position at a glance">
+<Finding title="2. Hard to see net position at a glance">
 Solution: a single Overview card with net balance.
-</PainPoint>
+</Finding>
 
-<PainPoint title="3. Too many categories lead to confusion">
+<Finding title="3. Too many categories lead to confusion">
 Solution: limited default categories and a custom tag option.
-</PainPoint>
-
-</Narrow>
-</Section>
-
-<Section bg="card">
-<Wide>
+</Finding>
 
 ## Persona: Sarah
 
@@ -80,21 +63,9 @@ Sarah wants to save for a condo down payment, but she keeps losing track of wher
 
 <ProjectImage src="/images/projects/ledger/Persona.png" alt="Persona Sarah" />
 
-</Wide>
-</Section>
-
-<Section>
-<Wide>
-
 ## User Journey Map
 
 <ProjectImage src="/images/projects/ledger/User journey map.png" alt="User Journey Map" />
-
-</Wide>
-</Section>
-
-<Section bg="card">
-<Narrow>
 
 ## Starting the Design
 
@@ -102,42 +73,21 @@ Sarah wants to save for a condo down payment, but she keeps losing track of wher
 
 I built user-focused flows to ensure that the persona can complete their key objectives while reducing the existing pain points.
 
-</Narrow>
-
 <ProjectImage src="/images/projects/ledger/Site map.png" alt="Sitemap" />
-
-</Section>
-
-<Section>
-<Narrow>
 
 ## Paper Wireframes
 
 I explored layouts for the Ledger app's main screens, prioritizing simplicity and ease of navigation. My goal was to enable the quick recording of income and expenses while ensuring a clear overview of the balance.
 
-</Narrow>
-
 <ProjectImage src="/images/projects/ledger/paper_wireframe_all.png" alt="Paper Wireframes" />
 <ProjectImage src="/images/projects/ledger/paper_variations.png" alt="Paper Wireframe Variations" />
-
-</Section>
-
-<Section bg="card">
-<Narrow>
 
 ## Digital Wireframes
 
 I created digital wireframes from the completed paper sketches to improve the structure and layout of key screens. These wireframes allowed me to test hierarchy, spacing, and interaction flow before moving on to the high-fidelity prototype.
 
-</Narrow>
-
 <ProjectImage src="/images/projects/ledger/digital.png" alt="Digital Wireframes" />
 <ProjectImage src="/images/projects/ledger/digital_variations.png" alt="Digital Wireframe Variations" />
-
-</Section>
-
-<Section>
-<Narrow>
 
 ## Low-fidelity Prototype
 
@@ -145,18 +95,11 @@ I created a low-fidelity prototype to test the initial user flow of recording in
 
 <FigmaLink href="https://www.figma.com/proto/9G6BaivcHUmenZ8eZpiSA5/Ledger---Income---Expenses-Recorder?node-id=143-297&p=f&t=4OvRxxos4vi34TCn-1&scaling=min-zoom&content-scaling=fixed&page-id=211%3A1974&starting-point-node-id=143%3A297&show-proto-sidebar=1">View Lo-Fi Prototype on Figma</FigmaLink>
 
-</Narrow>
-
 <ProjectImage src="/images/projects/ledger/Lo-fi.png" alt="Low-fidelity Prototype" />
-
-</Section>
-
-<Section bg="card">
-<Narrow>
 
 ## Usability Study
 
-<StatsGrid cardBg="background" items={[
+<StatsGrid items={[
   { label: "Study Type", value: "Unmoderated" },
   { label: "Participants", value: "5 participants" },
   { label: "Length", value: "20-30 minutes" }
@@ -180,26 +123,13 @@ Users wanted an easier way to assign or create custom categories.
 Users had difficulty locating the option to edit or delete transactions.
 </Finding>
 
-</Narrow>
-</Section>
-
-<Section>
-<Narrow>
-
 ## Refining the Design
 
 After reviewing the insights from the usability study, I enhanced the overview screen. I redesigned the net balance card to improve its clarity and ensure users can quickly understand their financial status.
 
-</Narrow>
-
 <ProjectImage src="/images/projects/ledger/Mockup.png" alt="Mockup Comparison" />
 <ProjectImage src="/images/projects/ledger/mobile_mockup.png" alt="Mobile Mockups" />
 <ProjectImage src="/images/projects/ledger/variations_mockup.png" alt="Screen Size Variations" />
-
-</Section>
-
-<Section bg="card">
-<Narrow>
 
 ## High-fidelity Prototype
 
@@ -207,72 +137,28 @@ I refined the design based on usability feedback and created a high-fidelity pro
 
 <FigmaLink href="https://www.figma.com/proto/9G6BaivcHUmenZ8eZpiSA5/Ledger---Income---Expenses-Recorder?node-id=173-284&p=f&t=11e0kfFH2lVd6kpR-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=173%3A284">View Hi-Fi Prototype on Figma</FigmaLink>
 
-</Narrow>
-
 <ProjectImage src="/images/projects/ledger/Hi-fi.png" alt="High-fidelity Prototype" />
-
-</Section>
-
-<Section>
-<Narrow>
 
 ## Accessibility Considerations
 
-<AccessibilityGrid>
-<AccessibilityItem title="Color Contrast" icon="eye">
-High-contrast color combinations ensure text, charts, and icons are easy to read.
-</AccessibilityItem>
-<AccessibilityItem title="Visual Hierarchy" icon="list">
-Consistent text sizes, spacing, and layout help users easily scan content.
-</AccessibilityItem>
-<AccessibilityItem title="Keyboard & Screen Reader" icon="mobile">
-Interactive elements are accessible via keyboard and readable by screen readers.
-</AccessibilityItem>
-</AccessibilityGrid>
-
-</Narrow>
-</Section>
-
-<Section bg="card">
-<Narrow>
+- **Color Contrast** — High-contrast color combinations ensure text, charts, and icons are easy to read.
+- **Visual Hierarchy** — Consistent text sizes, spacing, and layout help users easily scan content.
+- **Keyboard & Screen Reader** — Interactive elements are accessible via keyboard and readable by screen readers.
 
 ## Going Forward
 
 ### Impact
 
-<ImpactList>
-<ImpactItem>
-The Ledger prototype transformed personal finance management by simplifying income and expense tracking.
-</ImpactItem>
-<ImpactItem>
-Feedback indicated that the user-friendly layout and clear financial summaries boosted confidence.
-</ImpactItem>
-</ImpactList>
+- The Ledger prototype transformed personal finance management by simplifying income and expense tracking.
+- Feedback indicated that the user-friendly layout and clear financial summaries boosted confidence.
 
 ### What I Learned
 
-<ImpactList>
-<ImpactItem>
-Balancing simplicity with functionality is essential; users prefer clarity and ease of use over complex features.
-</ImpactItem>
-<ImpactItem>
-Early wireframing and usability testing was vital in uncovering minor pain points.
-</ImpactItem>
-</ImpactList>
+- Balancing simplicity with functionality is essential; users prefer clarity and ease of use over complex features.
+- Early wireframing and usability testing was vital in uncovering minor pain points.
 
 ### Next Steps
 
-<NextSteps>
-<Step number={1}>
-Test the high-fidelity prototype with a larger and more diverse group of users.
-</Step>
-<Step number={2}>
-Introduce features for monthly budgets and savings goals.
-</Step>
-<Step number={3}>
-Adjust the design for both mobile and desktop interfaces.
-</Step>
-</NextSteps>
-
-</Narrow>
-</Section>
+1. Test the high-fidelity prototype with a larger and more diverse group of users.
+2. Introduce features for monthly budgets and savings goals.
+3. Adjust the design for both mobile and desktop interfaces.
