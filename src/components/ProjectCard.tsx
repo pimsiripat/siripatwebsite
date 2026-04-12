@@ -2,42 +2,42 @@ import Image from "next/image";
 import Link from "next/link";
 import { Project } from "@/data/projects";
 
-interface ProjectCardProps {
+interface ProjectRowProps {
   project: Project;
   index?: number;
+  isLast?: boolean;
 }
 
-export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+export default function ProjectRow({ project, index = 0, isLast = false }: ProjectRowProps) {
   const href = project.link ?? "#";
-  const isInternalRoute = href.startsWith("/") && href !== "#";
-  const num = String(index + 1).padStart(2, "0");
+  const isEven = index % 2 === 1;
 
-  const inner = (
-    <div className="group">
-      <div className="aspect-[3/2] overflow-hidden rounded-lg bg-surface">
+  const content = (
+    <div className={`group flex flex-col md:flex-row gap-8 md:gap-12 items-center ${isEven ? "md:flex-row-reverse" : ""} ${!isLast ? "pb-12 md:pb-16 border-b border-border mb-12 md:mb-16" : ""}`}>
+      {/* Image */}
+      <div className="w-full md:flex-[1.3] relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface">
         <Image
           src={project.image}
           alt={project.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, 60vw"
         />
       </div>
-      <div className="mt-6">
-        <div className="flex items-baseline gap-3 mb-2">
-          <span className="text-[0.75rem] text-muted tracking-wide">{num}</span>
-          <span className="text-[0.75rem] tracking-[0.15em] uppercase text-accent">
-            {project.category}
-          </span>
-        </div>
-        <h3 className="font-heading text-[1.6rem] text-fg mb-2 group-hover:text-accent transition-colors duration-200">
+
+      {/* Text */}
+      <div className="w-full md:flex-1">
+        <p className="text-[0.7rem] uppercase tracking-[0.2em] text-accent mb-2">
+          {project.category}
+        </p>
+        <h3 className="font-heading text-2xl text-fg mb-3 group-hover:text-accent transition-colors duration-200">
           {project.title}
         </h3>
-        <p className="text-muted text-[0.9rem] leading-[1.65] mb-4 max-w-[440px]">
+        <p className="text-muted text-sm leading-[1.7] mb-5 max-w-md">
           {project.description}
         </p>
-        <span className="inline-flex items-center gap-2 text-[0.85rem] text-fg tracking-wide group-hover:gap-3 transition-all duration-200">
-          Read Case Study
+        <span className="inline-flex items-center gap-2 text-sm text-fg font-medium border-b border-fg pb-0.5 group-hover:gap-3 transition-all duration-200">
+          View Project
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
@@ -46,17 +46,8 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     </div>
   );
 
-  if (isInternalRoute) {
-    return (
-      <Link href={href} className="block relative">
-        {inner}
-      </Link>
-    );
+  if (href.startsWith("/") && href !== "#") {
+    return <Link href={href} className="block">{content}</Link>;
   }
-
-  return (
-    <a href={href} className="block relative">
-      {inner}
-    </a>
-  );
+  return <a href={href} className="block">{content}</a>;
 }
