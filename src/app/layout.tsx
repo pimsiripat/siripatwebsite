@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
+import { DM_Sans, Noto_Sans } from "next/font/google";
 import "./globals.css";
 
 const siteUrl =
@@ -13,8 +13,8 @@ const dmSans = DM_Sans({
   subsets: ["latin"],
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
+const notoSans = Noto_Sans({
+  variable: "--font-noto-sans",
   subsets: ["latin"],
 });
 
@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${dmSans.variable} ${plusJakartaSans.variable} antialiased`}
+        className={`${dmSans.variable} ${notoSans.variable} antialiased`}
       >
         {children}
       </body>
