@@ -5,7 +5,7 @@ import React from "react";
 
 function Callout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-accent/5 border-l-3 border-accent px-5 py-4 rounded-r-lg mb-8 [&>p]:mb-0 [&>p]:text-fg">
+    <div className="max-w-3xl mx-auto bg-accent/5 border-l-3 border-accent px-5 py-4 rounded-r-lg mb-8 [&>p]:mb-0 [&>p]:text-fg">
       {children}
     </div>
   );
@@ -19,7 +19,7 @@ function Finding({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="border-l-2 border-accent pl-5 mb-6">
+    <div className="max-w-3xl mx-auto border-l-2 border-accent pl-5 mb-6">
       <p className="font-semibold text-fg mb-1">{title}</p>
       {children && (
         <div className="text-muted text-sm leading-relaxed [&>p]:mb-0">
@@ -36,7 +36,7 @@ function StatsGrid({
   items: { label: string; value: string }[];
 }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
+    <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
       {items.map((item) => (
         <div key={item.label} className="bg-surface p-5 rounded-xl">
           <p className="text-[0.7rem] uppercase tracking-[0.15em] text-muted mb-1">
@@ -51,7 +51,7 @@ function StatsGrid({
 
 function TwoCol({ children }: { children: React.ReactNode }) {
   return (
-    <div className="grid md:grid-cols-2 gap-10 mb-8">{children}</div>
+    <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-10 mb-8">{children}</div>
   );
 }
 
@@ -67,7 +67,7 @@ function FigmaLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 text-accent hover:underline mb-6"
+      className="max-w-3xl mx-auto inline-flex items-center gap-2 text-accent hover:underline mb-6"
     >
       {children}
       <svg

@@ -86,7 +86,7 @@ export default async function ProjectPage({ params }: Props) {
         </section>
 
         {/* MDX Content */}
-        <article className="px-6 pb-16">
+        <article className="px-6 pb-16 overflow-x-hidden">
           <MDXRemote
             source={content}
             components={mdxComponents}

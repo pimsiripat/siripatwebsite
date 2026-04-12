@@ -1,0 +1,108 @@
+<h2>Projects Listing Page Layout</h2>
+<p class="subtitle">How should your projects be presented on the /projects page?</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="padding: 32px; background: #FAFAF7; border-radius: 8px;">
+        <!-- Stacked full-width cards -->
+        <div style="margin-bottom: 24px; border: 1px solid #E0DCD7; border-radius: 16px; overflow: hidden;">
+          <div style="height: 220px; background: linear-gradient(135deg, #F0EDEA, #E0DCD7); display: flex; align-items: center; justify-content: center;">
+            <div style="width: 180px; height: 120px; background: #D4593C; border-radius: 12px; opacity: 0.3;"></div>
+          </div>
+          <div style="padding: 24px;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 8px;">Case Study</div>
+            <div style="font-size: 22px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Project Title</div>
+            <div style="font-size: 14px; color: #71706E; line-height: 1.6;">Short description of the project goes here with context about the work.</div>
+          </div>
+        </div>
+        <div style="border: 1px solid #E0DCD7; border-radius: 16px; overflow: hidden;">
+          <div style="height: 220px; background: linear-gradient(135deg, #F0EDEA, #E0DCD7); display: flex; align-items: center; justify-content: center;">
+            <div style="width: 180px; height: 120px; background: #D4593C; border-radius: 12px; opacity: 0.3;"></div>
+          </div>
+          <div style="padding: 24px;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 8px;">Case Study</div>
+            <div style="font-size: 22px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Project Title</div>
+            <div style="font-size: 14px; color: #71706E; line-height: 1.6;">Short description of the project goes here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. Stacked Full-Width Cards</h3>
+      <p>Each project gets a large hero image with text below. One column, editorial feel. Similar to Nicole Roberts' case study listing. Great for 2-4 projects.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="padding: 32px; background: #FAFAF7; border-radius: 8px;">
+        <!-- Featured + grid -->
+        <div style="margin-bottom: 24px; border: 1px solid #E0DCD7; border-radius: 16px; overflow: hidden;">
+          <div style="display: flex;">
+            <div style="flex: 1; height: 200px; background: linear-gradient(135deg, #F0EDEA, #E0DCD7); display: flex; align-items: center; justify-content: center;">
+              <div style="width: 140px; height: 90px; background: #D4593C; border-radius: 12px; opacity: 0.3;"></div>
+            </div>
+            <div style="flex: 1; padding: 24px; display: flex; flex-direction: column; justify-content: center;">
+              <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 8px;">Featured</div>
+              <div style="font-size: 20px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Project Title</div>
+              <div style="font-size: 13px; color: #71706E;">Description text here.</div>
+            </div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="border: 1px solid #E0DCD7; border-radius: 12px; overflow: hidden;">
+            <div style="height: 100px; background: linear-gradient(135deg, #F0EDEA, #E0DCD7);"></div>
+            <div style="padding: 12px;">
+              <div style="font-size: 14px; font-weight: 600; color: #1C1C1C;">Project 2</div>
+            </div>
+          </div>
+          <div style="border: 1px solid #E0DCD7; border-radius: 12px; overflow: hidden;">
+            <div style="height: 100px; background: linear-gradient(135deg, #F0EDEA, #E0DCD7);"></div>
+            <div style="padding: 12px;">
+              <div style="font-size: 14px; font-weight: 600; color: #1C1C1C;">Project 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Featured + Grid</h3>
+      <p>One large featured project at the top (horizontal card), smaller projects in a 2-column grid below. Creates visual hierarchy between projects.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="padding: 32px; background: #FAFAF7; border-radius: 8px;">
+        <!-- Alternating rows -->
+        <div style="display: flex; gap: 24px; margin-bottom: 24px; align-items: center;">
+          <div style="flex: 1.2; height: 160px; background: linear-gradient(135deg, #F0EDEA, #E0DCD7); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 120px; height: 80px; background: #D4593C; border-radius: 12px; opacity: 0.3;"></div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 8px;">Case Study</div>
+            <div style="font-size: 20px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Ledger</div>
+            <div style="font-size: 13px; color: #71706E; line-height: 1.5;">Financial tracking app description.</div>
+            <div style="margin-top: 12px; font-size: 13px; color: #1C1C1C;">View Project &rarr;</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 24px; align-items: center; flex-direction: row-reverse;">
+          <div style="flex: 1.2; height: 160px; background: linear-gradient(135deg, #F0EDEA, #E0DCD7); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 120px; height: 80px; background: #D4593C; border-radius: 12px; opacity: 0.3;"></div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 8px;">Case Study</div>
+            <div style="font-size: 20px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Pawtopia</div>
+            <div style="font-size: 13px; color: #71706E; line-height: 1.5;">Pet hospital app description.</div>
+            <div style="margin-top: 12px; font-size: 13px; color: #1C1C1C;">View Project &rarr;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. Alternating Image-Text Rows</h3>
+      <p>Horizontal layout with image and text side-by-side, alternating left/right. Creates visual rhythm and gives each project equal prominence.</p>
+    </div>
+  </div>
+</div>
