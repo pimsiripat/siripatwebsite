@@ -1,17 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+
+const INTERACTIVE_SELECTOR =
+  "a, button, [role='button'], .project-card-interactive, .tag-interactive";
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const mouse = useRef({ x: 0, y: 0 });
   const ring = useRef({ x: 0, y: 0 });
-  const [visible, setVisible] = useState(false);
-  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+
+    const applyVisible = (v: boolean) => {
+      if (dotRef.current) dotRef.current.style.opacity = v ? "1" : "0";
+      if (ringRef.current) ringRef.current.style.opacity = v ? "0.5" : "0";
+    };
+
+    const applyExpanded = (expanded: boolean) => {
+      if (!ringRef.current) return;
+      const s = expanded ? 48 : 36;
+      ringRef.current.style.width = `${s}px`;
+      ringRef.current.style.height = `${s}px`;
+    };
 
     const onMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX;
@@ -20,17 +35,19 @@ export default function CustomCursor() {
         dotRef.current.style.left = `${e.clientX}px`;
         dotRef.current.style.top = `${e.clientY}px`;
       }
-      if (!visible) setVisible(true);
+      const hit = document.elementFromPoint(e.clientX, e.clientY);
+      applyExpanded(!!hit?.closest(INTERACTIVE_SELECTOR));
+      applyVisible(true);
     };
 
-    const onEnter = () => setVisible(true);
-    const onLeave = () => setVisible(false);
+    const onLeave = () => applyVisible(false);
+    const onEnter = () => applyVisible(true);
 
     document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseenter", onEnter);
     document.addEventListener("mouseleave", onLeave);
+    document.addEventListener("mouseenter", onEnter);
 
-    let raf: number;
+    let raf = 0;
     const animate = () => {
       ring.current.x += (mouse.current.x - ring.current.x) * 0.12;
       ring.current.y += (mouse.current.y - ring.current.y) * 0.12;
@@ -42,25 +59,13 @@ export default function CustomCursor() {
     };
     raf = requestAnimationFrame(animate);
 
-    const addHoverListeners = () => {
-      document.querySelectorAll("a, button, [role='button'], .project-card-interactive, .tag-interactive").forEach((el) => {
-        el.addEventListener("mouseenter", () => setExpanded(true));
-        el.addEventListener("mouseleave", () => setExpanded(false));
-      });
-    };
-
-    addHoverListeners();
-    const observer = new MutationObserver(addHoverListeners);
-    observer.observe(document.body, { childList: true, subtree: true });
-
     return () => {
       document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseenter", onEnter);
       document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("mouseenter", onEnter);
       cancelAnimationFrame(raf);
-      observer.disconnect();
     };
-  }, [visible]);
+  }, []);
 
   return (
     <>
@@ -74,7 +79,7 @@ export default function CustomCursor() {
           borderRadius: "50%",
           transform: "translate(-50%, -50%)",
           mixBlendMode: "multiply",
-          opacity: visible ? 1 : 0,
+          opacity: 0,
           transition: "opacity 0.3s, transform 0.15s",
         }}
       />
@@ -82,13 +87,13 @@ export default function CustomCursor() {
         ref={ringRef}
         className="fixed pointer-events-none z-[9998] hidden md:block"
         style={{
-          width: expanded ? 48 : 36,
-          height: expanded ? 48 : 36,
+          width: 36,
+          height: 36,
           border: `2px solid var(--green)`,
           borderRadius: "50%",
           transform: "translate(-50%, -50%)",
           transition: "width 0.3s, height 0.3s, opacity 0.3s",
-          opacity: visible ? 0.5 : 0,
+          opacity: 0,
         }}
       />
     </>

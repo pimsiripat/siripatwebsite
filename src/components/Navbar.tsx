@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useId } from "react";
+import Link from "next/link";
 import Logo from "./Logo";
 
 const navLinks = [
-  { name: "About", href: "/#about" },
   { name: "Work", href: "/#work" },
+  { name: "About", href: "/#about" },
   { name: "Process", href: "/#process" },
   { name: "Contact", href: "/#contact" },
 ];
@@ -13,6 +14,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const mobileMenuId = useId();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -20,92 +22,88 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[500] transition-all duration-400 ${
-        scrolled ? "bg-cream/85 backdrop-blur-2xl shadow-[0_2px_24px_rgba(134,167,136,0.10)]" : ""
+      className={`fixed top-0 left-0 right-0 z-[500] transition-all duration-300 ${
+        scrolled ? "bg-bg/90 backdrop-blur-xl border-b border-border" : ""
       }`}
     >
-      <div className="px-6 lg:px-[60px] py-5 lg:py-6 flex items-center justify-between">
-        <a
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+        <Link
           href="/"
-          className="inline-flex items-center transition-transform duration-200 hover:-translate-y-0.5"
+          className="inline-flex items-center transition-opacity duration-200 hover:opacity-60"
           aria-label="Pim — Home"
         >
-          <Logo size={44} />
-        </a>
+          <Logo size={40} />
+        </Link>
 
-        <ul className="hidden md:flex items-center gap-9 list-none">
+        <ul className="hidden md:flex items-center gap-8 list-none">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <a
+              <Link
                 href={link.href}
-                className="relative text-[0.9rem] font-medium text-mid hover:text-green transition-colors group"
+                className="text-[0.875rem] tracking-wide text-muted hover:text-fg transition-colors duration-200"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green rounded-full transition-all duration-300 ease-out group-hover:w-full" />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
-        <a
+        <Link
           href="/#contact"
-          className="hidden md:inline-block bg-green text-white px-6 py-2.5 rounded-full text-[0.9rem] font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(134,167,136,0.35)]"
+          className="hidden md:inline-block text-[0.875rem] tracking-wide text-fg border border-fg px-5 py-2 rounded-full transition-all duration-200 hover:bg-fg hover:text-bg"
         >
-          Hire Me
-        </a>
+          Get in Touch
+        </Link>
 
         <button
-          className="md:hidden p-2 -mr-2 text-foreground"
+          type="button"
+          className="md:hidden p-2 -mr-2 text-fg"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          aria-controls={mobileMenuId}
         >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
         </button>
       </div>
 
       {isOpen && (
-        <div className="md:hidden px-6 pb-6">
-          <div className="flex flex-col gap-4">
+        <div id={mobileMenuId} className="md:hidden px-6 pb-8 border-b border-border" role="region" aria-label="Primary">
+          <div className="flex flex-col gap-5">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                className="text-[0.9rem] font-medium text-mid hover:text-green transition-colors"
+                className="text-[0.95rem] text-muted hover:text-fg transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <a
+            <Link
               href="/#contact"
-              className="inline-block bg-green text-white px-6 py-2.5 rounded-full text-[0.9rem] font-medium text-center mt-2"
+              className="inline-block text-center text-fg border border-fg px-6 py-2.5 rounded-full text-[0.9rem] mt-2"
               onClick={() => setIsOpen(false)}
             >
-              Hire Me
-            </a>
+              Get in Touch
+            </Link>
           </div>
         </div>
       )}

@@ -33,12 +33,16 @@ export default function ScrollReveal({ children, delay = 0, className = "" }: Sc
   return (
     <div
       ref={ref}
-      className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.7s ease-out ${delay}ms, transform 0.7s ease-out ${delay}ms`,
-      }}
+      className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${className} ${
+        isVisible
+          ? "translate-y-0 opacity-100"
+          : "translate-y-6 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
+      }`}
+      style={
+        isVisible && delay > 0
+          ? { transitionDelay: `${delay}ms` }
+          : undefined
+      }
     >
       {children}
     </div>

@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localFont from "next/font/local";
-import CustomCursor from "@/components/CustomCursor";
+import { DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+const defaultOgImage = "/images/projects/ledger/mockup_5.png";
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
-const googleSans = localFont({
-  src: [
-    { path: "../../public/fonts/GoogleSans-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../../public/fonts/GoogleSans-Medium.ttf", weight: "500", style: "normal" },
-    { path: "../../public/fonts/GoogleSans-SemiBold.ttf", weight: "600", style: "normal" },
-    { path: "../../public/fonts/GoogleSans-Bold.ttf", weight: "700", style: "normal" },
-  ],
-  variable: "--font-google-sans",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Siripat | UX/UI Designer",
   description: "UX/UI Designer crafting intuitive digital experiences. View my portfolio and case studies.",
   keywords: ["UX designer", "UI designer", "portfolio", "product design", "user experience"],
@@ -29,11 +30,13 @@ export const metadata: Metadata = {
     description: "UX/UI Designer crafting intuitive digital experiences.",
     type: "website",
     locale: "en_US",
+    images: [{ url: defaultOgImage, alt: "Siripat portfolio work" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Siripat | UX/UI Designer",
     description: "UX/UI Designer crafting intuitive digital experiences.",
+    images: [defaultOgImage],
   },
 };
 
@@ -45,9 +48,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${googleSans.variable} antialiased`}
+        className={`${dmSans.variable} ${instrumentSerif.variable} antialiased`}
       >
-        <CustomCursor />
         {children}
       </body>
     </html>

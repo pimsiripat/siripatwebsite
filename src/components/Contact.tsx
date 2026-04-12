@@ -1,53 +1,57 @@
 import ScrollReveal from "@/components/ScrollReveal";
 
+const contactEmail =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@example.com";
+const linkedinUrl =
+  process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "https://www.linkedin.com";
+
 export default function Contact() {
   return (
-    <section id="contact" className="py-[100px] px-6 lg:px-[60px] bg-cream">
-      <div className="max-w-[1100px] mx-auto">
+    <section id="contact" className="py-[100px] px-6 lg:px-10 bg-surface">
+      <div className="max-w-[1200px] mx-auto">
         <ScrollReveal>
-          <div className="text-center">
-            <p className="text-[0.78rem] font-bold text-green uppercase tracking-[0.15em] mb-3">
-              Get In Touch
+          <div className="max-w-[600px]">
+            <p className="text-[0.75rem] tracking-[0.2em] uppercase text-accent mb-3">
+              Contact
             </p>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,2.8rem)] font-bold leading-[1.2] text-dark mb-4">
-              Let&apos;s create something
-              <br />
-              <em className="text-green">beautiful</em> together
+            <h2 className="font-heading text-[clamp(2rem,4vw,3rem)] text-fg mb-6">
+              Let&apos;s work together
             </h2>
-            <p className="text-mid text-[1rem] leading-[1.8] max-w-[480px] mx-auto mb-12">
-              Have a project in mind or just want to say hello? I&apos;d love to
-              connect — feel free to reach out anytime!
+            <p className="text-muted text-[1rem] leading-[1.8] mb-12">
+              Have a project in mind or looking for a UX/UI designer?
+              I&apos;d love to hear from you.
             </p>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={200}>
-          <div className="flex justify-center gap-7 flex-wrap">
+        <ScrollReveal delay={150}>
+          <div className="flex flex-col sm:flex-row gap-6">
             <a
-              href="mailto:hello@example.com"
-              className="project-card-interactive flex flex-col items-center gap-2.5 bg-pink-light border-2 border-transparent rounded-[28px] px-[52px] py-9 text-dark transition-all duration-250 hover:bg-green hover:text-white hover:border-green hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(134,167,136,0.3)] min-w-[220px]"
+              href={`mailto:${contactEmail}`}
+              className="group flex items-center gap-4 border border-border rounded-lg px-6 py-5 transition-all duration-200 hover:border-fg"
             >
-              <span className="text-[2.2rem]">✉️</span>
-              <span className="text-[0.75rem] font-bold uppercase tracking-[0.12em] opacity-60">
-                Email
-              </span>
-              <span className="text-[0.95rem] font-semibold">
-                hello@example.com
-              </span>
+              <svg className="w-5 h-5 text-muted group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <div>
+                <p className="text-[0.7rem] tracking-[0.15em] uppercase text-muted mb-0.5">Email</p>
+                <p className="text-fg text-[0.9rem]">{contactEmail}</p>
+              </div>
             </a>
+
             <a
-              href="https://linkedin.com"
+              href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="project-card-interactive flex flex-col items-center gap-2.5 bg-pink-light border-2 border-transparent rounded-[28px] px-[52px] py-9 text-dark transition-all duration-250 hover:bg-green hover:text-white hover:border-green hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(134,167,136,0.3)] min-w-[220px]"
+              className="group flex items-center gap-4 border border-border rounded-lg px-6 py-5 transition-all duration-200 hover:border-fg"
             >
-              <span className="text-[2.2rem]">💼</span>
-              <span className="text-[0.75rem] font-bold uppercase tracking-[0.12em] opacity-60">
-                LinkedIn
-              </span>
-              <span className="text-[0.95rem] font-semibold">
-                Siripat Anukool
-              </span>
+              <svg className="w-5 h-5 text-muted group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" />
+              </svg>
+              <div>
+                <p className="text-[0.7rem] tracking-[0.15em] uppercase text-muted mb-0.5">LinkedIn</p>
+                <p className="text-fg text-[0.9rem]">Siripat Anukool</p>
+              </div>
             </a>
           </div>
         </ScrollReveal>
