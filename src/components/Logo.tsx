@@ -3,24 +3,15 @@ type LogoProps = {
   className?: string;
 };
 
-export default function Logo({ size = 44, className }: LogoProps) {
+export default function Logo({ size = 32, className }: LogoProps) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 100 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
+    <span
+      className={`font-heading text-fg select-none ${className ?? ""}`}
+      style={{ fontSize: size * 0.65, lineHeight: 1 }}
       aria-label="Pim logo"
       role="img"
     >
-      {/* Outer pink ring */}
-      <circle cx="50" cy="50" r="48" fill="#FFCFCF" />
-      {/* White gap ring */}
-      <circle cx="50" cy="50" r="40" fill="#FFFDEC" />
-      {/* Inner green circle (placeholder for photo) */}
-      <circle cx="50" cy="50" r="36" fill="#86A788" />
-    </svg>
+      Pim<span className="text-accent">.</span>
+    </span>
   );
 }

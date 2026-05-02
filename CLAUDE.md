@@ -5,15 +5,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev     # Start development server (localhost:3000)
-npm run build   # Build for production
-npm start       # Start production server
-npm run lint    # Run ESLint checks
+bun run dev      # Start development server (localhost:4321)
+bun run build    # Build for production
+bun run preview  # Preview production build
 ```
 
 ## Architecture
 
-This is a Next.js 16 portfolio website using the App Router, React 19, TypeScript, and Tailwind CSS v4.
+This is an Astro 5 portfolio website with static output, TypeScript, and Tailwind CSS v4.
 
 ### Routing Structure
 
@@ -23,28 +22,31 @@ This is a Next.js 16 portfolio website using the App Router, React 19, TypeScrip
 
 ### Key Directories
 
-- `src/app/` - App Router pages and layouts
-- `src/components/` - React components (Navbar, Hero, About, Contact, ProjectCard, Footer)
-- `src/data/projects.ts` - Static project data with TypeScript `Project` interface
+- `src/pages/` - Astro pages (file-based routing)
+- `src/layouts/` - Base layout with head, fonts, SEO meta
+- `src/components/` - Astro components + Navbar.tsx (React island)
+- `src/components/mdx/` - MDX custom components (Callout, Finding, StatsGrid, etc.)
+- `src/content/projects/` - MDX case study files with frontmatter
+- `src/content.config.ts` - Content collection schema
+- `src/styles/globals.css` - Tailwind theme and CSS variables
 - `public/images/projects/` - Case study images organized by project slug
 
 ### Component Patterns
 
-- **Server Components** (default): All page components and most UI components
-- **Client Components** ("use client"): Only Navbar.tsx (for mobile menu state)
-- Path alias: `@/*` maps to `./src/*`
+- **Astro components** (default): All page and UI components are `.astro` files (zero JS)
+- **React island**: Only `Navbar.tsx` (for mobile menu state), loaded with `client:load`
+- `Logo.tsx` stays as React because Navbar imports it
 
 ### Styling
 
-- Tailwind CSS with utility classes (no CSS modules)
-- CSS variables defined in `globals.css` for colors: `--background`, `--foreground`, `--primary`, `--muted`, `--subtle`, `--card`, `--accent`
-- Fonts: Inter (body via `--font-inter`) and Plus Jakarta Sans (headings via `--font-plus-jakarta`)
-- Dark mode CSS variables exist but toggle is not implemented
+- Tailwind CSS v4 with utility classes
+- CSS variables defined in `globals.css` for colors: `--bg`, `--fg`, `--muted`, `--accent`, `--accent-light`, `--surface`, `--border`
+- Fonts: DM Sans (body) and Noto Sans (headings) loaded via Google Fonts `<link>` tags
 
 ### Data Flow
 
-Project data is static TypeScript in `src/data/projects.ts`. Each project has: id, title, category, description, image, link, and slug. Case study pages are hardcoded in their respective route files.
+Project data comes from MDX content collections in `src/content/projects/`. Each MDX file has typed frontmatter: title, description, category, heroImage, image, meta. Queried with `getCollection('projects')`.
 
 ### Metadata
 
-SEO metadata is configured in `layout.tsx` (root) and individual page files using Next.js Metadata API with Open Graph and Twitter card support.
+SEO metadata is configured in `Base.astro` layout. Pages pass title/description as props to override defaults. Open Graph and Twitter card meta tags included.

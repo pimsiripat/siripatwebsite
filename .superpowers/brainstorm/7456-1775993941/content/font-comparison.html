@@ -1,0 +1,90 @@
+<h2>Font Comparison</h2>
+<p class="subtitle">เทียบ font สำหรับ heading และ body text</p>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="padding: 32px; background: #FAFAF7; border-radius: 8px;">
+        <!-- Current: Plus Jakarta Sans heading + DM Sans body -->
+        <div style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #E0DCD7;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 6px;">Current Setup</div>
+          <div style="font-size: 10px; color: #71706E; font-family: system-ui;">Heading: Plus Jakarta Sans · Body: DM Sans</div>
+        </div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 700; color: #1C1C1C; margin-bottom: 12px;">Going Forward</div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">What I Learned</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #71706E; line-height: 1.7; margin-bottom: 16px;">Balancing simplicity with functionality is essential; users prefer clarity and ease of use over complex features.</div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Next Steps</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #71706E; line-height: 1.7;">1. Test the high-fidelity prototype with a larger group of users.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. Current — Plus Jakarta Sans + DM Sans</h3>
+      <p>Geometric, modern feel. Two different font families. Headings feel distinct from body text.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="padding: 32px; background: #FAFAF7; border-radius: 8px;">
+        <!-- Noto Sans for everything -->
+        <div style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #E0DCD7;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 6px;">Option B</div>
+          <div style="font-size: 10px; color: #71706E; font-family: system-ui;">Heading: Noto Sans (Bold) · Body: Noto Sans (Regular)</div>
+        </div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 26px; font-weight: 700; color: #1C1C1C; margin-bottom: 12px;">Going Forward</div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">What I Learned</div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 14px; color: #71706E; line-height: 1.7; margin-bottom: 16px;">Balancing simplicity with functionality is essential; users prefer clarity and ease of use over complex features.</div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Next Steps</div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 14px; color: #71706E; line-height: 1.7;">1. Test the high-fidelity prototype with a larger group of users.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Noto Sans Only</h3>
+      <p>One font family for everything, weight contrast creates hierarchy. Clean and unified. Supports Thai natively.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="padding: 32px; background: #FAFAF7; border-radius: 8px;">
+        <!-- Noto Sans heading + DM Sans body -->
+        <div style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #E0DCD7;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 6px;">Option C</div>
+          <div style="font-size: 10px; color: #71706E; font-family: system-ui;">Heading: Noto Sans (Bold) · Body: DM Sans</div>
+        </div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 26px; font-weight: 700; color: #1C1C1C; margin-bottom: 12px;">Going Forward</div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">What I Learned</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #71706E; line-height: 1.7; margin-bottom: 16px;">Balancing simplicity with functionality is essential; users prefer clarity and ease of use over complex features.</div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Next Steps</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #71706E; line-height: 1.7;">1. Test the high-fidelity prototype with a larger group of users.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. Noto Sans Heading + DM Sans Body</h3>
+      <p>Mix: Noto Sans for headings (wider, cleaner), DM Sans body (geometric, compact). Subtle contrast between heading and body.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="d" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="padding: 32px; background: #FAFAF7; border-radius: 8px;">
+        <!-- Plus Jakarta Sans heading + Noto Sans body -->
+        <div style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #E0DCD7;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #D4593C; margin-bottom: 6px;">Option D</div>
+          <div style="font-size: 10px; color: #71706E; font-family: system-ui;">Heading: Plus Jakarta Sans (Bold) · Body: Noto Sans</div>
+        </div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 700; color: #1C1C1C; margin-bottom: 12px;">Going Forward</div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">What I Learned</div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 14px; color: #71706E; line-height: 1.7; margin-bottom: 16px;">Balancing simplicity with functionality is essential; users prefer clarity and ease of use over complex features.</div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: #1C1C1C; margin-bottom: 8px;">Next Steps</div>
+        <div style="font-family: 'Noto Sans', sans-serif; font-size: 14px; color: #71706E; line-height: 1.7;">1. Test the high-fidelity prototype with a larger group of users.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>D. Plus Jakarta Sans Heading + Noto Sans Body</h3>
+      <p>Keep current bold headings, switch body to Noto Sans for better readability and Thai support.</p>
+    </div>
+  </div>
+</div>
