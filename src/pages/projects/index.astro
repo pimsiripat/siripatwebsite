@@ -6,7 +6,9 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 import '../../styles/globals.css';
 
-const projects = await getCollection('projects');
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
 ---
 
 <Base title="Projects | Siripat" description="Browse my selected UX/UI design projects and case studies.">
