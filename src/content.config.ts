@@ -10,6 +10,7 @@ const projects = defineCollection({
     heroImage: z.string(),
     image: z.string(),
     meta: z.record(z.string()),
+    order: z.number(),
   }),
 });
 
