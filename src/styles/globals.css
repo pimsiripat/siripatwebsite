@@ -64,6 +64,18 @@ html {
   body { cursor: auto; }
 }
 
+/* Table of contents: active section. Unlayered, so it beats the text-muted utility. */
+.toc-active {
+  color: var(--fg);
+  border-left-color: var(--accent);
+}
+
+/* Anchor jumps must clear the fixed navbar */
+article.mdx-content > h2,
+article.mdx-content > h3 {
+  scroll-margin-top: 6rem;
+}
+
 /* MDX article prose styles */
 article.mdx-content > h2 {
   max-width: 48rem;

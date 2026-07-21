@@ -1,0 +1,96 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+// Only top-level sections — h3s would make a 30-item list on these case studies.
+const items = headings.filter((h) => h.depth === 2);
+---
+
+{items.length > 2 && (
+  <>
+    <!-- Under xl there is no room beside the article, so collapse it inline -->
+    <div class="xl:hidden px-6 mb-12">
+      <details class="max-w-3xl mx-auto border border-border rounded-lg px-5 py-4">
+        <summary class="cursor-pointer select-none text-[0.7rem] tracking-[0.2em] uppercase text-accent">
+          Contents
+        </summary>
+        <ol class="mt-4 space-y-2.5 list-none">
+          {items.map((h) => (
+            <li>
+              <a
+                href={`#${h.slug}`}
+                class="text-muted text-[0.9rem] hover:text-fg transition-colors duration-200"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </div>
+
+    <!-- xl+: fixed rail in the gutter, so the article keeps its own centering -->
+    <nav
+      aria-label="Table of contents"
+      class="hidden xl:block fixed left-6 2xl:left-10 top-1/2 -translate-y-1/2 w-[190px] max-h-[70vh] overflow-y-auto z-[400]"
+    >
+      <p class="text-[0.7rem] tracking-[0.2em] uppercase text-muted mb-4">
+        Contents
+      </p>
+      <ol class="list-none border-l border-border">
+        {items.map((h) => (
+          <li>
+            <a
+              href={`#${h.slug}`}
+              data-toc-link={h.slug}
+              class="block -ml-px border-l border-transparent py-1.5 pl-4 text-[0.8rem] leading-snug text-muted hover:text-fg transition-colors duration-200"
+            >
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </>
+)}
+
+<script>
+  const links = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')
+  );
+
+  if (links.length > 0) {
+    const targets = links
+      .map((link) => ({ link, el: document.getElementById(link.dataset.tocLink!) }))
+      .filter((t): t is { link: HTMLAnchorElement; el: HTMLElement } => t.el !== null);
+
+    let queued = false;
+
+    const update = () => {
+      queued = false;
+      // The last heading that has scrolled past the fixed navbar is the current one.
+      let current = targets[0];
+      for (const t of targets) {
+        if (t.el.getBoundingClientRect().top > 120) break;
+        current = t;
+      }
+      for (const t of targets) {
+        t.link.classList.toggle('toc-active', t === current);
+      }
+    };
+
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+</script>

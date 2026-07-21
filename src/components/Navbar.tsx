@@ -4,7 +4,7 @@ import { useState, useEffect, useId } from "react";
 import Logo from "./Logo";
 
 const navLinks = [
-  { name: "Work", href: "/#work" },
+  { name: "Projects", href: "/#projects" },
   { name: "About", href: "/#about" },
   { name: "Process", href: "/#process" },
   { name: "Contact", href: "/#contact" },
@@ -37,10 +37,10 @@ export default function Navbar() {
       }`}
     >
       <div className="px-6 lg:px-10">
-        <div className="max-w-[1200px] mx-auto w-full py-5 flex items-center justify-between">
+        <div className="max-w-[1200px] mx-auto w-full py-5 grid grid-cols-[1fr_auto_1fr] items-center">
           <a
             href="/"
-            className="inline-flex items-center transition-opacity duration-200 hover:opacity-60"
+            className="justify-self-start inline-flex items-center transition-opacity duration-200 hover:opacity-60"
             aria-label="Pim — Home"
           >
             <Logo size={28} />
@@ -59,16 +59,9 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <a
-            href="/#contact"
-            className="hidden md:inline-block text-[0.875rem] tracking-wide text-fg border border-fg px-5 py-2 rounded-full transition-all duration-200 hover:bg-fg hover:text-bg"
-          >
-            Get in Touch
-          </a>
-
           <button
             type="button"
-            className="md:hidden p-2 -mr-2 text-fg"
+            className="md:hidden col-start-3 justify-self-end p-2 -mr-2 text-fg"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
@@ -98,13 +91,6 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <a
-              href="/#contact"
-              className="inline-block text-center text-fg border border-fg px-6 py-2.5 rounded-full text-[0.9rem] mt-2"
-              onClick={() => setIsOpen(false)}
-            >
-              Get in Touch
-            </a>
           </div>
         </div>
       )}

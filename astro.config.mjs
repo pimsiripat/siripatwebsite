@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  site: 'https://siripatwebsite.vercel.app',
   integrations: [react(), mdx()],
   vite: {
     plugins: [tailwindcss()],

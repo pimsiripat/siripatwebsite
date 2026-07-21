@@ -1,47 +1,53 @@
+---
+import { Image } from "astro:assets";
+import profile from "../assets/profile.jpg";
+---
+
 <section class="min-h-screen flex items-center px-6 lg:px-10 pt-[120px] pb-[80px]">
   <div class="max-w-[1200px] mx-auto w-full">
-    <div class="max-w-[820px]">
-      <p
-        class="text-[0.8rem] tracking-[0.2em] uppercase text-muted mb-8 opacity-0"
-        style="animation: fadeUp 0.7s 0.1s forwards"
-      >
-        UX/UI Designer &mdash; Bangkok, Thailand
-      </p>
+    <div
+      class="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-10 lg:gap-16 items-center"
+    >
+      <div class="order-2 lg:order-1 max-w-[820px]">
+        <p
+          class="text-[0.8rem] tracking-[0.2em] uppercase text-muted mb-8 opacity-0"
+          style="animation: fadeUp 0.7s 0.1s forwards"
+        >
+          UX/UI Designer &mdash; Bangkok, Thailand
+        </p>
 
-      <h1
-        class="font-heading text-[clamp(3rem,7vw,5.5rem)] leading-[1.05] tracking-tight text-fg mb-8 opacity-0"
-        style="animation: fadeUp 0.8s 0.25s forwards"
-      >
-        I design products<br />
-        people <em class="text-accent">actually</em><br />
-        want to use.
-      </h1>
+        <h1
+          class="font-heading text-[clamp(3rem,7vw,5.5rem)] leading-[1.05] tracking-tight text-fg mb-8 opacity-0"
+          style="animation: fadeUp 0.8s 0.25s forwards"
+        >
+          I design products<br />
+          people <em class="text-accent">actually</em><br />
+          want to use.
+        </h1>
 
-      <p
-        class="text-muted text-[1.1rem] leading-[1.75] max-w-[520px] mb-12 opacity-0"
-        style="animation: fadeUp 0.8s 0.4s forwards"
-      >
-        Siripat Anukool — turning complex problems into
-        clear, intuitive experiences through research-driven
-        design and thoughtful iteration.
-      </p>
+        <p
+          class="text-muted text-[1.1rem] leading-[1.75] max-w-[520px] opacity-0"
+          style="animation: fadeUp 0.8s 0.4s forwards"
+        >
+          Siripat Anukool — turning complex problems into
+          clear, intuitive experiences through research-driven
+          design and thoughtful iteration.
+        </p>
+      </div>
 
       <div
-        class="flex items-center gap-6 opacity-0"
-        style="animation: fadeUp 0.8s 0.55s forwards"
+        class="order-1 lg:order-2 w-24 lg:w-full opacity-0"
+        style="animation: fadeUp 0.8s 0.3s forwards"
       >
-        <a
-          href="/#work"
-          class="inline-block bg-fg text-bg px-8 py-3.5 rounded-full text-[0.9rem] tracking-wide transition-all duration-200 hover:opacity-80"
-        >
-          View Projects
-        </a>
-        <a
-          href="/#contact"
-          class="text-[0.9rem] tracking-wide text-muted hover:text-fg transition-colors duration-200 border-b border-border hover:border-fg pb-0.5"
-        >
-          Get in Touch
-        </a>
+        <Image
+          src={profile}
+          alt="Siripat Anukool"
+          widths={[192, 320, 640]}
+          sizes="(min-width: 1024px) 320px, 96px"
+          loading="eager"
+          fetchpriority="high"
+          class="w-full aspect-[3/4] object-cover rounded-2xl"
+        />
       </div>
     </div>
 

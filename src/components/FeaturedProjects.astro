@@ -2,30 +2,45 @@
 import { getCollection } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
 
-const projects = (await getCollection('projects')).sort(
+const HOME_LIMIT = 3;
+
+const allProjects = (await getCollection('projects')).sort(
   (a, b) => a.data.order - b.data.order
 );
+const projects = allProjects.slice(0, HOME_LIMIT);
+// Only advertise the index page once it actually holds more than the home page
+// shows — otherwise the link promises more and delivers the same list.
+const hasMore = allProjects.length > HOME_LIMIT;
 ---
 
-<section id="work" class="py-[100px] px-6 lg:px-10">
+<section id="projects" class="py-[100px] px-6 lg:px-10">
   <div class="max-w-[1200px] mx-auto">
-    <div class="flex items-baseline justify-between mb-14">
+    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-14">
       <div>
         <p class="text-[0.75rem] tracking-[0.2em] uppercase text-accent mb-3">
-          Selected Work
+          Projects
         </p>
         <h2 class="font-heading text-[clamp(2rem,4vw,3rem)] text-fg">
-          Recent Projects
+          Selected Case Studies
         </h2>
       </div>
-      <span class="hidden sm:block text-[0.8rem] text-muted tracking-wide">
-        {String(projects.length).padStart(2, "0")} projects
-      </span>
+      {hasMore && (
+        <a
+          href="/projects"
+          class="self-start text-[0.8rem] text-muted tracking-wide hover:text-fg transition-colors duration-200 border-b border-border hover:border-fg pb-0.5"
+        >
+          View all projects <span aria-hidden="true">&rarr;</span>
+        </a>
+      )}
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
+    <div>
       {projects.map((project, i) => (
-        <ProjectCard project={project} index={i} />
+        <ProjectCard
+          project={project}
+          index={i}
+          isLast={i === projects.length - 1}
+        />
       ))}
     </div>
   </div>
