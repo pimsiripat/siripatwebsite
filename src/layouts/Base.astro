@@ -8,10 +8,12 @@ interface Props {
 const {
   title = "Siripat | UX/UI Designer",
   description = "UX/UI Designer crafting intuitive digital experiences. View my portfolio and case studies.",
-  ogImage = "/images/projects/ledger/mockup_5.png",
+  ogImage = "/images/projects/ledger/Hero.png",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://localhost:4321");
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// Open Graph requires absolute URLs — relative paths render as a broken preview.
+const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
@@ -43,13 +45,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://localhos
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:url" content={canonicalURL} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageURL} />
   </head>
   <body class="antialiased">
     <slot />

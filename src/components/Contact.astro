@@ -1,6 +1,8 @@
 ---
-const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL ?? "siripat.anukool@gmail.com";
-const linkedinUrl = import.meta.env.PUBLIC_LINKEDIN_URL ?? "https://www.linkedin.com";
+import { CONTACT_EMAIL, LINKEDIN_URL, LINKEDIN_HANDLE } from "../consts";
+
+const contactEmail = CONTACT_EMAIL;
+const linkedinUrl = LINKEDIN_URL;
 ---
 
 <section id="contact" class="py-[100px] px-6 lg:px-10 bg-surface">
@@ -13,8 +15,8 @@ const linkedinUrl = import.meta.env.PUBLIC_LINKEDIN_URL ?? "https://www.linkedin
         Let's work together
       </h2>
       <p class="text-muted text-[1rem] leading-[1.8] mb-12">
-        Have a project in mind or looking for a UX/UI designer?
-        I'd love to hear from you.
+        I'm currently looking for a full-time UX/UI design role &mdash; open to
+        on-site in Bangkok or remote. If you're hiring, I'd love to talk.
       </p>
     </div>
 
@@ -43,7 +45,7 @@ const linkedinUrl = import.meta.env.PUBLIC_LINKEDIN_URL ?? "https://www.linkedin
         </svg>
         <div>
           <p class="text-[0.7rem] tracking-[0.15em] uppercase text-muted mb-0.5">LinkedIn</p>
-          <p class="text-fg text-[0.9rem]">Siripat Anukool</p>
+          <p class="text-fg text-[0.9rem]">{LINKEDIN_HANDLE}</p>
         </div>
       </a>
     </div>

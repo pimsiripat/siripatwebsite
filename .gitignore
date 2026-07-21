@@ -42,3 +42,9 @@ next-env.d.ts
 
 # astro build output
 /dist
+
+# local claude plugin skills
+.claude/skills/
+
+# raw case-study source material (Notion exports, unoptimized assets)
+/Ledger

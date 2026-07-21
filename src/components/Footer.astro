@@ -1,14 +1,31 @@
 ---
+import { CONTACT_EMAIL, LINKEDIN_URL } from '../consts';
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="border-t border-border py-8 px-6 lg:px-10">
   <div class="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-muted text-[0.8rem]">
-      &copy; {currentYear} Siripat Anukool
+      &copy; {currentYear} Siripat Anukool &mdash; UX/UI Designer, Bangkok
     </p>
-    <p class="text-muted text-[0.8rem]">
-      UX/UI Designer &mdash; Bangkok, Thailand
-    </p>
+
+    <!-- Readers who scroll this far are looking for a way to reach out -->
+    <nav aria-label="Contact links" class="flex items-center gap-5">
+      <a
+        href={`mailto:${CONTACT_EMAIL}`}
+        class="text-muted text-[0.8rem] hover:text-fg transition-colors duration-200"
+      >
+        Email
+      </a>
+      <a
+        href={LINKEDIN_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-muted text-[0.8rem] hover:text-fg transition-colors duration-200"
+      >
+        LinkedIn
+      </a>
+    </nav>
   </div>
 </footer>

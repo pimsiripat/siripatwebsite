@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navbar.tsx';
 import Footer from '../../components/Footer.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 import Callout from '../../components/mdx/Callout.astro';
 import Finding from '../../components/mdx/Finding.astro';
 import StatsGrid from '../../components/mdx/StatsGrid.astro';
@@ -12,19 +13,30 @@ import { getCollection, render } from 'astro:content';
 import '../../styles/globals.css';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project) => ({
+  const projects = (await getCollection('projects')).sort(
+    (a, b) => a.data.order - b.data.order
+  );
+  return projects.map((project, i) => ({
     params: { slug: project.id },
-    props: { project },
+    props: {
+      project,
+      // Wrap around so the last case study still offers somewhere to go.
+      next: projects[(i + 1) % projects.length],
+    },
   }));
 }
 
-const { project } = Astro.props;
-const { Content } = await render(project);
+const { project, next } = Astro.props;
+const { Content, headings } = await render(project);
 const { title, description, category, heroImage, meta } = project.data;
+const hasNext = next.id !== project.id;
 ---
 
-<Base title={`${title} - Case Study | Siripat`} description={description}>
+<Base
+  title={`${title} - Case Study | Siripat`}
+  description={description}
+  ogImage={heroImage}
+>
   <Navbar client:load />
   <main class="min-h-screen bg-bg pt-20">
     <!-- Hero Section -->
@@ -64,23 +76,56 @@ const { title, description, category, heroImage, meta } = project.data;
       </div>
     </section>
 
+    <TableOfContents headings={headings} />
+
     <!-- MDX Content -->
     <article class="mdx-content px-6 pb-16 overflow-x-hidden">
       <Content components={{ Callout, Finding, StatsGrid, TwoCol, FigmaLink, ProjectImage }} />
     </article>
 
-    <!-- Back to Projects -->
+    <!-- Where to go next -->
     <section class="px-6 pb-20">
       <div class="max-w-3xl mx-auto pt-8 border-t border-border">
-        <a
-          href="/projects"
-          class="inline-flex items-center gap-2 text-sm text-fg font-medium hover:text-accent transition-colors duration-200"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to All Projects
-        </a>
+        <div class="flex flex-wrap items-center justify-between gap-6">
+          <a
+            href="/projects"
+            class="inline-flex items-center gap-2 text-sm text-muted hover:text-fg transition-colors duration-200"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
+            </svg>
+            All projects
+          </a>
+
+          {hasNext && (
+            <a
+              href={`/projects/${next.id}`}
+              class="group inline-flex items-baseline gap-2 text-right"
+            >
+              <span class="text-[0.7rem] tracking-[0.15em] uppercase text-muted">Next</span>
+              <span class="text-sm font-medium text-fg group-hover:text-accent transition-colors duration-200">
+                {next.data.title} &rarr;
+              </span>
+            </a>
+          )}
+        </div>
+
+        <!-- The end of a case study is the highest-intent moment on the site -->
+        <div class="mt-12 p-8 border border-border rounded-lg">
+          <h2 class="font-heading text-xl text-fg mb-2">
+            Interested in working together?
+          </h2>
+          <p class="text-muted text-[0.9rem] leading-[1.7] mb-6 max-w-md">
+            I'm open to UX/UI design roles. Happy to walk through my process
+            behind this project.
+          </p>
+          <a
+            href="/#contact"
+            class="inline-block bg-fg text-bg px-6 py-3 rounded-full text-[0.85rem] tracking-wide transition-opacity duration-200 hover:opacity-80"
+          >
+            Get in touch
+          </a>
+        </div>
       </div>
     </section>
   </main>
