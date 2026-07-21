@@ -36,51 +36,53 @@ export default function Navbar() {
         scrolled ? "bg-bg/90 backdrop-blur-xl border-b border-border" : ""
       }`}
     >
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
-        <a
-          href="/"
-          className="inline-flex items-center transition-opacity duration-200 hover:opacity-60"
-          aria-label="Pim — Home"
-        >
-          <Logo size={40} />
-        </a>
+      <div className="px-6 lg:px-10">
+        <div className="max-w-[1200px] mx-auto w-full py-5 flex items-center justify-between">
+          <a
+            href="/"
+            className="inline-flex items-center transition-opacity duration-200 hover:opacity-60"
+            aria-label="Pim — Home"
+          >
+            <Logo size={28} />
+          </a>
 
-        <ul className="hidden md:flex items-center gap-8 list-none">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <a
-                href={link.href}
-                className="text-[0.875rem] tracking-wide text-muted hover:text-fg transition-colors duration-200"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+          <ul className="hidden md:flex items-center gap-8 list-none">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  className="text-[0.875rem] tracking-wide text-muted hover:text-fg transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        <a
-          href="/#contact"
-          className="hidden md:inline-block text-[0.875rem] tracking-wide text-fg border border-fg px-5 py-2 rounded-full transition-all duration-200 hover:bg-fg hover:text-bg"
-        >
-          Get in Touch
-        </a>
+          <a
+            href="/#contact"
+            className="hidden md:inline-block text-[0.875rem] tracking-wide text-fg border border-fg px-5 py-2 rounded-full transition-all duration-200 hover:bg-fg hover:text-bg"
+          >
+            Get in Touch
+          </a>
 
-        <button
-          type="button"
-          className="md:hidden p-2 -mr-2 text-fg"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isOpen}
-          aria-controls={mobileMenuId}
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {isOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+          <button
+            type="button"
+            className="md:hidden p-2 -mr-2 text-fg"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls={mobileMenuId}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {isOpen && (
