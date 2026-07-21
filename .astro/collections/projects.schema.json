@@ -25,6 +25,9 @@
             "type": "string"
           }
         },
+        "order": {
+          "type": "number"
+        },
         "$schema": {
           "type": "string"
         }
@@ -35,7 +38,8 @@
         "category",
         "heroImage",
         "image",
-        "meta"
+        "meta",
+        "order"
       ],
       "additionalProperties": false
     }
