@@ -1,33 +1,105 @@
 ---
-import { Image } from "astro:assets";
-import profile from "../assets/profile.jpg";
+import { Image, getImage } from "astro:assets";
+import profile from "../assets/profile.png";
+import rocket from "../assets/hero-rocket.png";
+import gift from "../assets/hero-gift.png";
+import letterP from "../assets/hero-letter-p.png";
+import letterI from "../assets/hero-letter-i.png";
+import letterM from "../assets/hero-letter-m.png";
+import heart from "../assets/hero-heart.png";
+import camera from "../assets/hero-camera.png";
+import controller from "../assets/hero-controller.png";
+import iceCream from "../assets/hero-ice-cream.png";
+
+// Cycled in this order behind the pointer. Only the rocket is aimed along the
+// direction of travel -- the letters spell "Pim" and the objects have an
+// obvious upright, so those get a light random tilt instead.
+const trailArt = [
+  { src: rocket, aim: true },
+  { src: gift, aim: false },
+  { src: letterP, aim: false },
+  { src: letterI, aim: false },
+  { src: letterM, aim: false },
+  { src: heart, aim: false },
+  { src: camera, aim: false },
+  { src: controller, aim: false },
+  { src: iceCream, aim: false },
+];
+
+// Resolved here and handed over as plain URLs, so the script can stamp out
+// <img> nodes on the fly without pulling the asset pipeline into the browser.
+const trail = await Promise.all(
+  trailArt.map(async (art) => ({
+    src: (await getImage({ src: art.src, height: 240, format: "webp" })).src,
+    aim: art.aim,
+  })),
+);
 ---
 
-<section class="min-h-screen flex items-center px-6 lg:px-10 pt-[120px] pb-[80px]">
-  <div class="max-w-[1200px] mx-auto w-full">
+<section
+  class="hero-scroll relative min-h-screen flex items-center px-6 lg:px-10 pt-[120px] pb-[80px]"
+>
+  <!-- Drifting dots echoing the logo mark. Decorative; kept to the gutter and
+       off small screens so they never crowd the headline. -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 hidden lg:block"
+  >
+    <span
+      class="hero-dot absolute left-[2%] top-[22%] h-4 w-4"
+      style="--dur: 11s; --d: 0s"
+    />
+    <span
+      class="hero-dot absolute left-[5%] bottom-[16%] h-6 w-6"
+      style="--dur: 15s; --d: -4s"
+    />
+    <span
+      class="hero-dot absolute left-[1.5%] top-[62%] h-2.5 w-2.5"
+      style="--dur: 9s; --d: -7s"
+    />
+  </div>
+
+  <!-- Rockets spawned behind the pointer. Decorative, mouse-only, and skipped
+       outright when the visitor asks for reduced motion. -->
+  <div
+    id="hero-trail"
+    aria-hidden="true"
+    data-trail={JSON.stringify(trail)}
+    class="pointer-events-none select-none absolute inset-0 z-20 overflow-hidden"
+  >
+  </div>
+
+  <div class="relative max-w-[1200px] mx-auto w-full">
     <div
       class="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-10 lg:gap-16 items-center"
     >
       <div class="order-2 lg:order-1 max-w-[820px]">
         <p
-          class="text-[0.8rem] tracking-[0.2em] uppercase text-muted mb-8 opacity-0"
-          style="animation: fadeUp 0.7s 0.1s forwards"
+          class="reveal text-[0.8rem] tracking-[0.2em] uppercase text-muted mb-8"
+          style="--d: 0.1s"
         >
           UX/UI Designer &mdash; Bangkok, Thailand
         </p>
 
         <h1
-          class="font-heading text-[clamp(3rem,7vw,5.5rem)] leading-[1.05] tracking-tight text-fg mb-8 opacity-0"
-          style="animation: fadeUp 0.8s 0.25s forwards"
+          class="font-heading text-[clamp(3rem,7vw,5.5rem)] leading-[1.05] tracking-tight text-fg mb-8"
         >
-          I design products<br />
-          people <em class="text-accent">actually</em><br />
-          want to use.
+          <span class="reveal-line"
+            ><span style="--d: 0.2s">I design products</span></span
+          >
+          <span class="reveal-line"
+            ><span style="--d: 0.32s"
+              >people <em class="text-accent">actually</em></span
+            ></span
+          >
+          <span class="reveal-line"
+            ><span style="--d: 0.44s">want to use.</span></span
+          >
         </h1>
 
         <p
-          class="text-muted text-[1.1rem] leading-[1.75] max-w-[520px] opacity-0"
-          style="animation: fadeUp 0.8s 0.4s forwards"
+          class="reveal text-muted text-[1.1rem] leading-[1.75] max-w-[520px]"
+          style="--d: 0.6s"
         >
           Siripat Anukool — turning complex problems into
           clear, intuitive experiences through research-driven
@@ -35,25 +107,109 @@ import profile from "../assets/profile.jpg";
         </p>
       </div>
 
-      <div
-        class="order-1 lg:order-2 w-24 lg:w-full opacity-0"
-        style="animation: fadeUp 0.8s 0.3s forwards"
-      >
-        <Image
-          src={profile}
-          alt="Siripat Anukool"
-          widths={[192, 320, 640]}
-          sizes="(min-width: 1024px) 320px, 96px"
-          loading="eager"
-          fetchpriority="high"
-          class="w-full aspect-[3/4] object-cover rounded-2xl"
-        />
+      <div class="reveal order-1 lg:order-2 w-24 lg:w-full" style="--d: 0.35s">
+        <div class="hero-portrait">
+          <Image
+            src={profile}
+            alt="Siripat Anukool"
+            widths={[192, 320, 640]}
+            sizes="(min-width: 1024px) 320px, 96px"
+            loading="eager"
+            fetchpriority="high"
+            class="w-full h-auto"
+          />
+        </div>
       </div>
     </div>
 
-    <div
-      class="mt-20 h-px bg-border origin-left opacity-0"
-      style="animation: fadeUp 0.6s 0.7s forwards"
-    />
+    <div class="reveal-rule mt-20 h-px bg-border origin-left" style="--d: 0.85s" />
   </div>
 </section>
+
+<script>
+  type TrailArt = { src: string; aim: boolean };
+
+  const layer = document.getElementById("hero-trail");
+  const hero = layer?.parentElement;
+  const art: TrailArt[] = JSON.parse(layer?.dataset.trail ?? "[]");
+
+  const wantsTrail =
+    window.matchMedia("(pointer: fine)").matches &&
+    window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+
+  if (layer && hero && art.length > 0 && wantsTrail) {
+    // Far enough apart that the art reads as a trail rather than a smear.
+    const MIN_DISTANCE = 55;
+    const MAX_ALIVE = 18;
+
+    let lastX: number | null = null;
+    let lastY: number | null = null;
+    let next = 0;
+    let alive = 0;
+
+    // Warm the cache so the first pass through the set does not pop in late.
+    for (const item of art) new Image().src = item.src;
+
+    const spawn = (x: number, y: number, angle: number) => {
+      if (alive >= MAX_ALIVE) return;
+
+      const piece = art[next];
+      next = (next + 1) % art.length;
+
+      const item = document.createElement("span");
+      item.className = "hero-trail-item";
+      item.style.left = x + "px";
+      item.style.top = y + "px";
+      // The rocket art already points up and to the right, so back that 45deg
+      // out before aiming its nose along the direction of travel.
+      const rotation = piece.aim
+        ? (angle * 180) / Math.PI + 45
+        : (Math.random() - 0.5) * 20;
+      item.style.setProperty("--rot", rotation + "deg");
+
+      const img = document.createElement("img");
+      img.src = piece.src;
+      img.alt = "";
+      img.addEventListener(
+        "animationend",
+        () => {
+          item.remove();
+          alive -= 1;
+        },
+        { once: true },
+      );
+
+      item.appendChild(img);
+      layer.appendChild(item);
+      alive += 1;
+    };
+
+    hero.addEventListener("pointermove", (event) => {
+      if (event.pointerType !== "mouse") return;
+
+      const rect = layer.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      if (lastX === null || lastY === null) {
+        lastX = x;
+        lastY = y;
+        return;
+      }
+
+      const dx = x - lastX;
+      const dy = y - lastY;
+      if (Math.hypot(dx, dy) < MIN_DISTANCE) return;
+
+      lastX = x;
+      lastY = y;
+      spawn(x, y, Math.atan2(dy, dx));
+    });
+
+    // Re-entering the hero should not aim a rocket using the old position.
+    hero.addEventListener("pointerleave", () => {
+      lastX = null;
+      lastY = null;
+    });
+  }
+</script>
