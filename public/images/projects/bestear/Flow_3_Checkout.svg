@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 410" role="img" aria-label="Flow three: the buyer chooses a colour and quantity, adds the pair to the basket, and a drawer confirms the addition with a running total. They review the basket, sign in or continue as a guest, and enter a shipping address. The flow continues with delivery options, payment details and a single review screen. A decision point checks whether everything is valid: if not, an inline error moves focus to the field in question and the basket stays intact; if valid, the order is placed and confirmed with tracking.">
+  <style>
+    .fn-box{fill:#fff;stroke:#12233F;stroke-width:1.6}
+    .fn-term{fill:#12233F;stroke:#12233F;stroke-width:1.6}
+    .fn-dec{fill:#FFF3EA;stroke:#FF6B00;stroke-width:1.8}
+    .fn-alt{fill:#F5F6F8;stroke:#5B6779;stroke-width:1.4;stroke-dasharray:6 4}
+    .fn-t{font-family:system-ui,sans-serif;font-size:13px;font-weight:500;fill:#12233F;text-anchor:middle}
+    .fn-i{fill:#ffffff}
+    .fn-lab{font-family:ui-monospace,monospace;font-size:11px;fill:#C24E00;letter-spacing:.06em}
+    .fn-note{font-family:ui-monospace,monospace;font-size:11px;fill:#5B6779;letter-spacing:.04em}
+    .fl{stroke:#12233F;stroke-width:1.6;fill:none}
+    .fl-d{stroke:#5B6779;stroke-width:1.4;fill:none;stroke-dasharray:6 5}
+  </style>
+  <rect x="0" y="0" width="960" height="410" fill="#FFFFFF"/>
+  <defs>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#12233F"/></marker>
+    <marker id="d3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6779"/></marker>
+  </defs>
+
+  <!-- row 1 -->
+  <rect class="fn-box" x="20"  y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="85"  y="66">Choose colour</text><text class="fn-t" x="85" y="84">and quantity</text>
+
+  <rect class="fn-box" x="176" y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="241" y="76">Add to basket</text>
+
+  <rect class="fn-box" x="332" y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="397" y="66">Basket drawer:</text><text class="fn-t" x="397" y="84">item + running total</text>
+
+  <rect class="fn-box" x="488" y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="553" y="66">Review basket —</text><text class="fn-t" x="553" y="84">edit qty, remove</text>
+
+  <rect class="fn-box" x="644" y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="709" y="66">Sign in or</text><text class="fn-t" x="709" y="84">continue as guest</text>
+
+  <rect class="fn-box" x="800" y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="865" y="66">Shipping</text><text class="fn-t" x="865" y="84">address</text>
+
+  <!-- row 2 -->
+  <rect class="fn-box" x="20"  y="190" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="85"  y="214">Delivery speed,</text><text class="fn-t" x="85" y="232">cost and date</text>
+
+  <rect class="fn-box" x="176" y="190" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="241" y="224">Payment details</text>
+
+  <rect class="fn-box" x="332" y="190" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="397" y="214">Review order</text><text class="fn-t" x="397" y="232">on one screen</text>
+
+  <polygon class="fn-dec" points="553,166 621,218 553,270 485,218"/>
+  <text class="fn-t" x="553" y="214">Everything</text><text class="fn-t" x="553" y="232">valid?</text>
+
+  <rect class="fn-box" x="644" y="190" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="709" y="224">Place order</text>
+
+  <rect class="fn-term" x="800" y="190" width="140" height="56" rx="28"/>
+  <text class="fn-t fn-i" x="870" y="214">Order confirmed</text><text class="fn-t fn-i" x="870" y="232">+ tracking</text>
+
+  <rect class="fn-alt" x="453" y="326" width="210" height="56" rx="9"/>
+  <text class="fn-t" x="558" y="350">Inline error, focus moves</text><text class="fn-t" x="558" y="368">to the field — basket intact</text>
+
+  <!-- connectors -->
+  <path class="fl" d="M150 70 H172" marker-end="url(#a3)"/>
+  <path class="fl" d="M306 70 H328" marker-end="url(#a3)"/>
+  <path class="fl" d="M462 70 H484" marker-end="url(#a3)"/>
+  <path class="fl" d="M618 70 H640" marker-end="url(#a3)"/>
+  <path class="fl" d="M774 70 H796" marker-end="url(#a3)"/>
+  <path class="fl" d="M865 98 V134 H85 V186" marker-end="url(#a3)"/>
+
+  <path class="fl" d="M150 218 H172" marker-end="url(#a3)"/>
+  <path class="fl" d="M306 218 H328" marker-end="url(#a3)"/>
+  <path class="fl" d="M462 218 H481" marker-end="url(#a3)"/>
+  <path class="fl" d="M621 218 H640" marker-end="url(#a3)"/>
+  <path class="fl" d="M774 218 H796" marker-end="url(#a3)"/>
+  <path class="fl" d="M553 270 V322" marker-end="url(#a3)"/>
+  <path class="fl-d" d="M453 354 H241 V252" marker-end="url(#d3)"/>
+
+  <text class="fn-lab" x="630" y="208">YES</text>
+  <text class="fn-lab" x="563" y="300">NO</text>
+  <text class="fn-note" x="252" y="292">fix one field, continue</text>
+  <text class="fn-note" x="700" y="126">checkout begins</text>
+</svg>
