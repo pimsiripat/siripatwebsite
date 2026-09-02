@@ -9,6 +9,7 @@ import StatsGrid from '../../components/mdx/StatsGrid.astro';
 import TwoCol from '../../components/mdx/TwoCol.astro';
 import FigmaLink from '../../components/mdx/FigmaLink.astro';
 import ProjectImage from '../../components/mdx/ProjectImage.astro';
+import ImageCarousel from '../../components/mdx/ImageCarousel.astro';
 import { getCollection, render } from 'astro:content';
 import '../../styles/globals.css';
 
@@ -65,7 +66,7 @@ const hasNext = next.id !== project.id;
 
     <!-- Hero Image -->
     <section class="px-6 pb-12">
-      <div class="max-w-5xl mx-auto">
+      <div class="max-w-3xl mx-auto">
         <div class="relative aspect-[16/9] rounded-2xl overflow-hidden bg-surface">
           <img
             src={heroImage}
@@ -80,7 +81,7 @@ const hasNext = next.id !== project.id;
 
     <!-- MDX Content -->
     <article class="mdx-content px-6 pb-16 overflow-x-hidden">
-      <Content components={{ Callout, Finding, StatsGrid, TwoCol, FigmaLink, ProjectImage }} />
+      <Content components={{ Callout, Finding, StatsGrid, TwoCol, FigmaLink, ProjectImage, ImageCarousel }} />
     </article>
 
     <!-- Where to go next -->

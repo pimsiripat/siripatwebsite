@@ -59,6 +59,123 @@ html {
   to   { transform: scaleX(1); }
 }
 
+/* Headline reveal: text slides up from behind a clipped line box */
+@keyframes maskUp {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+
+/* Plain fade, used as the reduced-motion stand-in for fadeUp */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Ambient: decorative brand dots wandering */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(12px, -16px); }
+  66%      { transform: translate(-9px, 9px); }
+}
+
+/* Hero recedes as the page scrolls away from it */
+@keyframes heroExit {
+  to { opacity: 0; transform: translateY(-40px); }
+}
+
+/*
+ * Entrance primitives. Each takes its stagger from --d so the timing of the
+ * whole sequence lives in the markup next to the element it belongs to.
+ */
+.reveal,
+.reveal-rule,
+.reveal-line > span {
+  animation-delay: var(--d, 0s);
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal {
+  animation-name: fadeUp;
+  animation-duration: 0.8s;
+}
+
+.reveal-rule {
+  animation-name: lineGrow;
+  animation-duration: 0.7s;
+}
+
+/*
+ * The clipping box. padding/margin cancel out to give descenders room the
+ * tight heading leading doesn't leave, so overflow:hidden trims the incoming
+ * text without shaving the tails off "p" and "y".
+ */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.reveal-line > span {
+  display: block;
+  animation-name: maskUp;
+  animation-duration: 0.9s;
+}
+
+/* Appearance stays outside the motion query so the dots remain part of the
+   composition when motion is switched off -- they just stop wandering. */
+.hero-dot {
+  border-radius: 9999px;
+  background: var(--accent);
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /*
+   * Its own element rather than the .reveal wrapper: that wrapper's entrance
+   * animation uses fill-mode both, so it holds the final keyframe's transform
+   * indefinitely and would win over anything set here.
+   * (hover: hover) keeps touch devices from latching the lifted state on tap.
+   */
+  @media (hover: hover) {
+    .hero-portrait {
+      transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .hero-portrait:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+  }
+
+  .hero-dot {
+    animation: drift var(--dur, 12s) var(--d, 0s) ease-in-out infinite;
+  }
+
+  /* Zero JS: the scroll position itself drives the timeline. Unsupported
+     browsers simply keep a static hero. */
+  @supports (animation-timeline: scroll()) {
+    .hero-scroll {
+      animation: heroExit linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 60vh;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the stagger, drop the travel. */
+  .reveal,
+  .reveal-rule {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+  }
+
+  .reveal-line > span {
+    animation: none;
+  }
+}
+
 /* Restore cursor on mobile / touch devices */
 @media (pointer: coarse) {
   body { cursor: auto; }
@@ -157,9 +274,38 @@ article.mdx-content > hr {
 
 article.mdx-content > p > img,
 article.mdx-content > img {
-  max-width: 64rem;
+  max-width: 48rem;
   margin: 2.5rem auto;
   display: block;
   border-radius: 1rem;
   background: var(--surface);
+}
+
+/* Cursor trail: a rocket puffs into view at the pointer and lifts away. */
+@keyframes rocketTrail {
+  0%   { opacity: 0; transform: scale(0.45); }
+  18%  { opacity: 0.9; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.72) translateY(-22px); }
+}
+
+/*
+ * Placement and aim live on the wrapper so the img is free to own the
+ * scale/fade animation without the two transforms fighting each other.
+ *
+ * Sized by height, not width: every source shares a 456px-tall canvas but
+ * varies in width, so matching widths would stretch the narrow letters
+ * (an "i" is half the width of an "m") well out of scale with the rest.
+ */
+.hero-trail-item {
+  position: absolute;
+  height: clamp(56px, 6vw, 92px);
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  will-change: transform;
+}
+
+.hero-trail-item img {
+  display: block;
+  height: 100%;
+  width: auto;
+  animation: rocketTrail 900ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }

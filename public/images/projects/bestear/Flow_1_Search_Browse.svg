@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 280" role="img" aria-label="Flow one: from the home or category page the buyer types a search term such as noise cancelling earbuds, and a results list loads. A decision point asks whether there are any matches. If yes, the buyer filters by fit, noise cancelling and price, sorts, scans the cards and opens an item. If no, an empty state offers a spelling fix and related categories, returning the buyer to the search term.">
+  <style>
+    .fn-box{fill:#fff;stroke:#12233F;stroke-width:1.6}
+    .fn-term{fill:#12233F;stroke:#12233F;stroke-width:1.6}
+    .fn-dec{fill:#FFF3EA;stroke:#FF6B00;stroke-width:1.8}
+    .fn-alt{fill:#F5F6F8;stroke:#5B6779;stroke-width:1.4;stroke-dasharray:6 4}
+    .fn-t{font-family:system-ui,sans-serif;font-size:13px;font-weight:500;fill:#12233F;text-anchor:middle}
+    .fn-i{fill:#ffffff}
+    .fn-lab{font-family:ui-monospace,monospace;font-size:11px;fill:#C24E00;letter-spacing:.06em}
+    .fn-note{font-family:ui-monospace,monospace;font-size:11px;fill:#5B6779;letter-spacing:.04em}
+    .fl{stroke:#12233F;stroke-width:1.6;fill:none}
+    .fl-d{stroke:#5B6779;stroke-width:1.4;fill:none;stroke-dasharray:6 5}
+  </style>
+  <rect x="0" y="0" width="960" height="280" fill="#FFFFFF"/>
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#12233F"/></marker>
+    <marker id="d1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5B6779"/></marker>
+  </defs>
+
+  <rect class="fn-box" x="20"  y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="85"  y="66">Home or</text><text class="fn-t" x="85" y="84">category page</text>
+
+  <rect class="fn-box" x="176" y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="241" y="66">Type a</text><text class="fn-t" x="241" y="84">search term</text>
+
+  <rect class="fn-box" x="332" y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="397" y="66">Results list</text><text class="fn-t" x="397" y="84">loads</text>
+
+  <polygon class="fn-dec" points="553,18 621,70 553,122 485,70"/>
+  <text class="fn-t" x="553" y="66">Any</text><text class="fn-t" x="553" y="84">matches?</text>
+
+  <rect class="fn-box" x="644" y="42" width="130" height="56" rx="9"/>
+  <text class="fn-t" x="709" y="66">Filter by fit,</text><text class="fn-t" x="709" y="84">ANC and price</text>
+
+  <rect class="fn-term" x="800" y="42" width="140" height="56" rx="28"/>
+  <text class="fn-t fn-i" x="870" y="76">Open item</text>
+
+  <rect class="fn-alt" x="453" y="188" width="210" height="56" rx="9"/>
+  <text class="fn-t" x="558" y="212">Empty state: spelling</text><text class="fn-t" x="558" y="230">fix + related categories</text>
+
+  <path class="fl" d="M150 70 H172" marker-end="url(#a1)"/>
+  <path class="fl" d="M306 70 H328" marker-end="url(#a1)"/>
+  <path class="fl" d="M462 70 H481" marker-end="url(#a1)"/>
+  <path class="fl" d="M621 70 H640" marker-end="url(#a1)"/>
+  <path class="fl" d="M774 70 H796" marker-end="url(#a1)"/>
+  <path class="fl" d="M553 122 V184" marker-end="url(#a1)"/>
+  <path class="fl-d" d="M453 216 H241 V104" marker-end="url(#d1)"/>
+
+  <text class="fn-lab" x="630" y="60">YES</text>
+  <text class="fn-lab" x="563" y="152">NO</text>
+  <text class="fn-note" x="252" y="150">refine the query</text>
+</svg>

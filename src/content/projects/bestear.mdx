@@ -1,0 +1,105 @@
+---
+title: "E-Commerce Website Design"
+description: "A headphone e-commerce redesign that unifies search, comparison, and checkout into one continuous, trustworthy buying path."
+category: "Case Study"
+heroImage: "/images/projects/bestear/Hero.png"
+image: "/images/projects/bestear/Hero.png"
+meta:
+  Category: "E-Commerce"
+  Timeline: "Mar 2026"
+  Role: "UX/UI Designer"
+  Type: "Case Study"
+order: 3
+---
+
+## Overview
+
+Buyers kept stalling at the moment of buying headphones online rather than putting them on.
+
+Three journeys carry every sale on this site: finding a pair, understanding it, and paying for it. I redesigned all three as one continuous path, then rebuilt the design system underneath so the same details behave the same way at every step — battery life quoted the same way on the card, the detail page, and the cart; fit type named the same way in the filters and the specs.
+
+The result is deliberately unflashy. When the product can't be demonstrated, clarity is the demo: a buyer should never need a second tab, a review site, or a phone call to work out what they're about to buy.
+
+## The Challenge
+
+### The Problem
+
+Buyers said they couldn't tell two pairs apart, couldn't predict the fit, and didn't trust the site to hold onto their basket.
+
+### The Goal
+
+Take a buyer from "I need something for the commute" to a confident purchase in a single phone session by making search return the right things, putting fit, battery, and pairing where the decision happens, and never losing a basket.
+
+## User Flow Diagrams
+
+Each flow was drawn from the buyer's intent rather than the page structure, and every decision point has a designed exit — the dashed paths are the recovery routes, where the old site used to dead-end.
+
+### 01 · Search & Browse
+
+**As a buyer, I can search and list items on the e-commerce page to find a pair to purchase.**
+
+From the home or category page, the buyer types a search term and a results list loads. If there are matches, they filter by fit, ANC, and price, then open an item. If there are no matches, an empty state offers a spelling fix and related categories, sending the buyer back to refine the query.
+
+<ProjectImage src="/images/projects/bestear/Flow_1_Search_Browse.svg" alt="Search & Browse user flow" background="white" />
+
+### 02 · View Item Details
+
+**As a buyer, I can see an item's details so I can compare specifications across items.**
+
+Opening an item leads to its detail page: gallery, price, stock, and delivery first, then fit, battery, full specs, and reviews. From there, the buyer decides whether to compare with other pairs — yes adds the item to a compare tray and shows specs side by side; no keeps the active filters and returns the buyer to the results list.
+
+<ProjectImage src="/images/projects/bestear/Flow_2_Item_Details.svg" alt="View Item Details user flow" background="white" />
+
+### 03 · Add to Basket & Checkout
+
+**As a buyer, I can add an item to the shopping cart to complete checkout.**
+
+The buyer chooses colour and quantity, adds the item to the basket, and a drawer confirms it with a running total. They review the basket, sign in or continue as a guest, enter a shipping address, choose a delivery speed, enter payment details, and review the order on one screen. If everything validates, the order is placed and confirmed with tracking; if not, an inline error focuses on the field in question, and the basket remains intact.
+
+<ProjectImage src="/images/projects/bestear/Flow_3_Checkout.svg" alt="Add to Basket & Checkout user flow" background="white" />
+
+## Mood, Tone, and Palette
+
+**Mood:** Professional, Trustworthy, and Energetic
+
+**Tone:** Deep Navy carries the trust and does the heavy lifting for text and structure. Vivid Orange is rationed: it marks the one action that moves a buyer forward on any given screen. Everything else is a light utility tone that keeps the product photography — usually matte black on white — the loudest thing on the page.
+
+**Color Palette:** The palette balances a bold commercial identity (Vivid Orange, Deep Navy) with lighter utility tones for backgrounds, inputs, and content surfaces.
+
+<ProjectImage src="/images/projects/bestear/Colors.png" alt="Color Palette" />
+
+## Screens
+
+<ImageCarousel items={[
+  { src: "/images/projects/bestear/Home.png", alt: "Home screen", label: "Home" },
+  { src: "/images/projects/bestear/Search Results & Filters.png", alt: "Search results and filters screen", label: "Search Results & Filters" },
+  { src: "/images/projects/bestear/Product Details.png", alt: "Product details screen", label: "Product Details" },
+  { src: "/images/projects/bestear/Your Shopping Cart.png", alt: "Shopping cart screen", label: "Your Shopping Cart" },
+  { src: "/images/projects/bestear/Checkout Process.png", alt: "Checkout process screen", label: "Checkout Process" },
+]} />
+
+## Mockups
+
+<ProjectImage src="/images/projects/bestear/Mockups.png" alt="Mockups" />
+
+## Going Forward
+
+### What I Learned
+
+<Finding title="1. I assumed the decision was about sound quality. It was about fit, battery, and pairing.">
+Sound only entered the conversation once two pairs were already shortlisted — so those three details moved onto the results card, and the eleven other filters went behind "More filters".
+</Finding>
+
+<Finding title="2. I treated comparison as a feature. It's a step.">
+Nearly everyone weighed two pairs before buying, so a hidden compare page was the wrong shape. Moving it into a persistent tray was the single change with the largest effect on task time.
+</Finding>
+
+<Finding title="3. I designed the empty state last.">
+It was the third screen most participants hit — misspelling "bluetooth" is common. Now I sketch the empty, error, and loading states in the same pass as the happy path.
+</Finding>
+
+### Next Steps
+
+1. Run moderated sessions with a daily screen reader user and a participant with hearing loss, and fix any issues they surface before adding anything new.
+2. A/B test guest checkout against the account gate. The design assumes guests convert better, but that's a hypothesis, not a finding.
+3. Instrument the search empty state to see whether the spelling fix or the related categories actually recovers the session.

@@ -1,0 +1,174 @@
+---
+/**
+ * Credentials, newest first. Each row's title is a link to the certificate
+ * image; a small script upgrades those links into a modal lightbox, so the
+ * list still works (opening the image directly) if the script never runs.
+ */
+type Certificate = {
+  title: string;
+  issuer: string;
+  note?: string;
+  date: string;
+  image: string;
+  verifyUrl?: string;
+};
+
+const certificates: Certificate[] = [
+  {
+    title: "Customer Journey Mapping",
+    issuer: "Skooldio",
+    date: "Jan 2026",
+    image: "/images/certificates/customer-journey-mapping.webp",
+  },
+  {
+    title: "UX Research and Information Architecture",
+    issuer: "IBM · Coursera",
+    date: "Jan 2026",
+    image: "/images/certificates/ux-research-information-architecture.webp",
+    verifyUrl: "https://coursera.org/verify/LPUE586GLE17",
+  },
+  {
+    title: "UX Writing",
+    issuer: "Skooldio",
+    date: "Dec 2025",
+    image: "/images/certificates/ux-writing.webp",
+  },
+  {
+    title: "Google UX Design Professional Certificate",
+    issuer: "Google · Coursera",
+    note: "Seven-course program — research, wireframing, prototyping in Figma, and usability testing.",
+    date: "Oct 2025",
+    image: "/images/certificates/google-ux-design.webp",
+    verifyUrl: "https://coursera.org/verify/professional-cert/YO3CV16Q8EAT",
+  },
+  {
+    title: "Intro to User Experience Design",
+    issuer: "Skooldio",
+    date: "Jan 2025",
+    image: "/images/certificates/intro-to-ux-design.webp",
+  },
+];
+---
+
+<section id="certifications" class="py-[100px] px-6 lg:px-10">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="mb-14 max-w-[600px]">
+      <p class="text-[0.75rem] tracking-[0.2em] uppercase text-accent mb-3">
+        Certifications
+      </p>
+      <h2 class="font-heading text-[clamp(2rem,4vw,3rem)] text-fg mb-6">
+        Where I learned the craft
+      </h2>
+      <p class="text-muted text-[0.95rem] leading-[1.8]">
+        Formal training that shaped how I research, structure, and write for
+        digital products. Select a course to view its certificate.
+      </p>
+    </div>
+
+    <ul class="list-none border-b border-border">
+      {certificates.map((cert) => (
+        <li class="grid grid-cols-1 sm:grid-cols-[1fr_auto] sm:items-baseline gap-3 sm:gap-10 py-7 border-t border-border">
+          <div>
+            <h3 class="text-[1.05rem] font-medium">
+              <a
+                href={cert.image}
+                class="cert-open group inline-flex items-baseline gap-2 text-fg hover:text-accent transition-colors duration-200"
+                data-cert-image={cert.image}
+                data-cert-caption={`${cert.title} — ${cert.issuer}, ${cert.date}`}
+                aria-haspopup="dialog"
+              >
+                <span class="border-b border-border group-hover:border-accent transition-colors duration-200 pb-0.5">
+                  {cert.title}
+                </span>
+                <svg
+                  class="w-3.5 h-3.5 shrink-0 self-center text-muted opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 3h6m0 0v6m0-6L14 10M9 21H3m0 0v-6m0 6l7-7" />
+                </svg>
+              </a>
+            </h3>
+            <p class="text-muted text-[0.85rem] mt-1.5">{cert.issuer}</p>
+            {cert.note && (
+              <p class="text-muted text-[0.85rem] leading-[1.7] mt-2 max-w-[46ch]">
+                {cert.note}
+              </p>
+            )}
+          </div>
+          <div class="flex items-baseline gap-6 sm:justify-end">
+            <span class="text-muted text-[0.8rem] tracking-wide whitespace-nowrap">
+              {cert.date}
+            </span>
+            {cert.verifyUrl && (
+              <a
+                href={cert.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[0.8rem] text-muted tracking-wide hover:text-fg transition-colors duration-200 border-b border-border hover:border-fg pb-0.5 whitespace-nowrap"
+              >
+                Verify <span aria-hidden="true">&rarr;</span>
+              </a>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <dialog
+    id="cert-lightbox"
+    aria-label="Certificate"
+    class="m-auto w-[min(1100px,92vw)] max-w-none bg-transparent p-0 text-fg backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+  >
+    <div class="bg-bg rounded-lg border border-border overflow-hidden">
+      <div class="flex items-start justify-between gap-4 px-5 py-4 border-b border-border">
+        <p id="cert-lightbox-caption" class="text-[0.85rem] text-muted leading-[1.6]"></p>
+        <button
+          type="button"
+          data-cert-close
+          class="shrink-0 -mr-1 -mt-1 p-1 text-muted hover:text-fg transition-colors"
+          aria-label="Close"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <img
+        id="cert-lightbox-image"
+        src=""
+        alt=""
+        class="block w-full h-auto max-h-[75vh] object-contain bg-surface"
+      />
+    </div>
+  </dialog>
+</section>
+
+<script>
+  const dialog = document.getElementById("cert-lightbox") as HTMLDialogElement | null;
+  const image = document.getElementById("cert-lightbox-image") as HTMLImageElement | null;
+  const caption = document.getElementById("cert-lightbox-caption");
+
+  if (dialog && image && caption && typeof dialog.showModal === "function") {
+    document.querySelectorAll<HTMLAnchorElement>("a.cert-open").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        // Let modified clicks (new tab, save-as) reach the plain image URL.
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        const src = link.dataset.certImage ?? link.href;
+        const text = link.dataset.certCaption ?? "";
+        if (image.src !== new URL(src, location.href).href) image.src = src;
+        image.alt = text;
+        caption.textContent = text;
+        dialog.showModal();
+      });
+    });
+
+    dialog.querySelector("[data-cert-close]")?.addEventListener("click", () => dialog.close());
+
+    // Clicks that land on the dialog itself came from the backdrop, not the card.
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+</script>

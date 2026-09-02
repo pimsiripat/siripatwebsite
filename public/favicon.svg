@@ -1,3 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <text x="50" y="50" font-size="88" text-anchor="middle" dominant-baseline="central">🍀</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1378 1376">
+  <g fill="#E89AB0">
+    <ellipse cx="729" cy="749" rx="530" ry="501"/>
+    <ellipse cx="1285" cy="184.5" rx="93" ry="83.5"/>
+    <ellipse cx="93" cy="1200.5" rx="93" ry="83.5"/>
+    <ellipse cx="1161.5" cy="1273" rx="77.5" ry="76"/>
+    <circle cx="80.5" cy="388.5" r="63.5"/>
+    <ellipse cx="992.5" cy="49.5" rx="53.5" ry="49.5"/>
+    <ellipse cx="618.5" cy="1330" rx="52.5" ry="46"/>
+  </g>
 </svg>

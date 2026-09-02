@@ -48,3 +48,7 @@ next-env.d.ts
 
 # raw case-study source material (Notion exports, unoptimized assets)
 /Ledger
+
+# raw art dropped at the repo root; the copies the site builds from live in src/assets
+/*.png
+/*.jpg

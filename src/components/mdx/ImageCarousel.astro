@@ -1,0 +1,204 @@
+---
+interface Props {
+  items: { src: string; alt: string; label?: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="image-carousel relative max-w-3xl mx-auto my-10">
+  <div class="carousel-track flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-[9%] sm:px-[15%] pb-2">
+    {items.map((item) => (
+      <figure class="carousel-slide flex-none w-[82%] sm:w-[70%] snap-center transition-transform duration-300 ease-out">
+        <div class="carousel-frame group relative aspect-[16/9] rounded-2xl overflow-hidden bg-white cursor-zoom-in">
+          <img
+            src={item.src}
+            alt={item.alt}
+            class="carousel-img absolute inset-0 w-full h-full object-contain"
+            loading="lazy"
+          />
+          <div class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/10 transition-colors">
+            <span class="w-9 h-9 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <svg class="w-4 h-4 text-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16zM11 8v6M8 11h6" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        {item.label && (
+          <figcaption class="mt-3 text-center text-sm text-muted">{item.label}</figcaption>
+        )}
+      </figure>
+    ))}
+  </div>
+
+  <button
+    type="button"
+    class="carousel-prev absolute left-0 top-[38%] -translate-y-1/2 w-10 h-10 rounded-full bg-bg border border-border shadow-sm flex items-center justify-center text-fg hover:bg-surface transition-colors"
+    aria-label="Scroll left"
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  <button
+    type="button"
+    class="carousel-next absolute right-0 top-[38%] -translate-y-1/2 w-10 h-10 rounded-full bg-bg border border-border shadow-sm flex items-center justify-center text-fg hover:bg-surface transition-colors"
+    aria-label="Scroll right"
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+<style>
+  .carousel-track {
+    scrollbar-width: none;
+  }
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel-slide.is-active {
+    transform: scale(1.06);
+  }
+</style>
+
+<script>
+  function getLightbox() {
+    if (window.__imageLightbox) return window.__imageLightbox;
+
+    const overlay = document.createElement('div');
+    overlay.className =
+      'image-lightbox fixed inset-0 z-[999] hidden items-center justify-center bg-black/90 p-4 sm:p-10';
+    overlay.innerHTML = `
+      <button type="button" class="lightbox-close absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Close">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+      <button type="button" class="lightbox-prev absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Previous image">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button type="button" class="lightbox-next absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Next image">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7" /></svg>
+      </button>
+      <figure class="max-w-6xl w-full flex flex-col items-center gap-4">
+        <img class="lightbox-img max-h-[80vh] max-w-full object-contain rounded-lg" src="" alt="" />
+        <figcaption class="lightbox-caption text-white/80 text-sm"></figcaption>
+      </figure>
+    `;
+    document.body.appendChild(overlay);
+
+    const img = overlay.querySelector('.lightbox-img');
+    const caption = overlay.querySelector('.lightbox-caption');
+    let images = [];
+    let index = 0;
+
+    const render = () => {
+      const item = images[index];
+      if (!item) return;
+      img.src = item.src;
+      img.alt = item.alt;
+      caption.textContent = item.label || '';
+    };
+
+    const close = () => {
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+      document.documentElement.style.overflow = '';
+    };
+
+    const open = (list, startIndex) => {
+      images = list;
+      index = startIndex;
+      render();
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      document.documentElement.style.overflow = 'hidden';
+    };
+
+    const step = (delta) => {
+      index = (index + delta + images.length) % images.length;
+      render();
+    };
+
+    overlay.querySelector('.lightbox-close').addEventListener('click', close);
+    overlay.querySelector('.lightbox-prev').addEventListener('click', () => step(-1));
+    overlay.querySelector('.lightbox-next').addEventListener('click', () => step(1));
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (overlay.classList.contains('hidden')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+
+    window.__imageLightbox = { open };
+    return window.__imageLightbox;
+  }
+
+  function setupCarousel(root) {
+    const track = root.querySelector('.carousel-track');
+    const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+    const prevBtn = root.querySelector('.carousel-prev');
+    const nextBtn = root.querySelector('.carousel-next');
+    if (!track || slides.length === 0) return;
+
+    const lightbox = getLightbox();
+    const items = slides.map((slide) => {
+      const img = slide.querySelector('.carousel-img');
+      const caption = slide.querySelector('figcaption');
+      return { src: img.getAttribute('src'), alt: img.getAttribute('alt'), label: caption?.textContent };
+    });
+    slides.forEach((slide, i) => {
+      slide.querySelector('.carousel-frame').addEventListener('click', () => lightbox.open(items, i));
+    });
+
+    const updateActive = () => {
+      const trackRect = track.getBoundingClientRect();
+      const center = trackRect.left + trackRect.width / 2;
+      let closest = null;
+      let closestDist = Infinity;
+      for (const slide of slides) {
+        const rect = slide.getBoundingClientRect();
+        const slideCenter = rect.left + rect.width / 2;
+        const dist = Math.abs(slideCenter - center);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = slide;
+        }
+      }
+      for (const slide of slides) {
+        slide.classList.toggle('is-active', slide === closest);
+      }
+    };
+
+    let ticking = false;
+    track.addEventListener(
+      'scroll',
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          updateActive();
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
+
+    prevBtn?.addEventListener('click', () => {
+      const width = slides[0].getBoundingClientRect().width;
+      track.scrollBy({ left: -(width + 16), behavior: 'smooth' });
+    });
+    nextBtn?.addEventListener('click', () => {
+      const width = slides[0].getBoundingClientRect().width;
+      track.scrollBy({ left: width + 16, behavior: 'smooth' });
+    });
+
+    updateActive();
+    window.addEventListener('resize', updateActive);
+  }
+
+  document.querySelectorAll('.image-carousel').forEach(setupCarousel);
+</script>
