@@ -1,39 +1,6 @@
 ---
-import { Image, getImage } from "astro:assets";
+import { Image } from "astro:assets";
 import profile from "../assets/profile.png";
-import rocket from "../assets/hero-rocket.png";
-import gift from "../assets/hero-gift.png";
-import letterP from "../assets/hero-letter-p.png";
-import letterI from "../assets/hero-letter-i.png";
-import letterM from "../assets/hero-letter-m.png";
-import heart from "../assets/hero-heart.png";
-import camera from "../assets/hero-camera.png";
-import controller from "../assets/hero-controller.png";
-import iceCream from "../assets/hero-ice-cream.png";
-
-// Cycled in this order behind the pointer. Only the rocket is aimed along the
-// direction of travel -- the letters spell "Pim" and the objects have an
-// obvious upright, so those get a light random tilt instead.
-const trailArt = [
-  { src: rocket, aim: true },
-  { src: gift, aim: false },
-  { src: letterP, aim: false },
-  { src: letterI, aim: false },
-  { src: letterM, aim: false },
-  { src: heart, aim: false },
-  { src: camera, aim: false },
-  { src: controller, aim: false },
-  { src: iceCream, aim: false },
-];
-
-// Resolved here and handed over as plain URLs, so the script can stamp out
-// <img> nodes on the fly without pulling the asset pipeline into the browser.
-const trail = await Promise.all(
-  trailArt.map(async (art) => ({
-    src: (await getImage({ src: art.src, height: 240, format: "webp" })).src,
-    aim: art.aim,
-  })),
-);
 ---
 
 <section
@@ -57,16 +24,6 @@ const trail = await Promise.all(
       class="hero-dot absolute left-[1.5%] top-[62%] h-2.5 w-2.5"
       style="--dur: 9s; --d: -7s"
     />
-  </div>
-
-  <!-- Rockets spawned behind the pointer. Decorative, mouse-only, and skipped
-       outright when the visitor asks for reduced motion. -->
-  <div
-    id="hero-trail"
-    aria-hidden="true"
-    data-trail={JSON.stringify(trail)}
-    class="pointer-events-none select-none absolute inset-0 z-20 overflow-hidden"
-  >
   </div>
 
   <div class="relative max-w-[1200px] mx-auto w-full">
@@ -125,91 +82,3 @@ const trail = await Promise.all(
     <div class="reveal-rule mt-20 h-px bg-border origin-left" style="--d: 0.85s" />
   </div>
 </section>
-
-<script>
-  type TrailArt = { src: string; aim: boolean };
-
-  const layer = document.getElementById("hero-trail");
-  const hero = layer?.parentElement;
-  const art: TrailArt[] = JSON.parse(layer?.dataset.trail ?? "[]");
-
-  const wantsTrail =
-    window.matchMedia("(pointer: fine)").matches &&
-    window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
-
-  if (layer && hero && art.length > 0 && wantsTrail) {
-    // Far enough apart that the art reads as a trail rather than a smear.
-    const MIN_DISTANCE = 55;
-    const MAX_ALIVE = 18;
-
-    let lastX: number | null = null;
-    let lastY: number | null = null;
-    let next = 0;
-    let alive = 0;
-
-    // Warm the cache so the first pass through the set does not pop in late.
-    for (const item of art) new Image().src = item.src;
-
-    const spawn = (x: number, y: number, angle: number) => {
-      if (alive >= MAX_ALIVE) return;
-
-      const piece = art[next];
-      next = (next + 1) % art.length;
-
-      const item = document.createElement("span");
-      item.className = "hero-trail-item";
-      item.style.left = x + "px";
-      item.style.top = y + "px";
-      // The rocket art already points up and to the right, so back that 45deg
-      // out before aiming its nose along the direction of travel.
-      const rotation = piece.aim
-        ? (angle * 180) / Math.PI + 45
-        : (Math.random() - 0.5) * 20;
-      item.style.setProperty("--rot", rotation + "deg");
-
-      const img = document.createElement("img");
-      img.src = piece.src;
-      img.alt = "";
-      img.addEventListener(
-        "animationend",
-        () => {
-          item.remove();
-          alive -= 1;
-        },
-        { once: true },
-      );
-
-      item.appendChild(img);
-      layer.appendChild(item);
-      alive += 1;
-    };
-
-    hero.addEventListener("pointermove", (event) => {
-      if (event.pointerType !== "mouse") return;
-
-      const rect = layer.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-
-      if (lastX === null || lastY === null) {
-        lastX = x;
-        lastY = y;
-        return;
-      }
-
-      const dx = x - lastX;
-      const dy = y - lastY;
-      if (Math.hypot(dx, dy) < MIN_DISTANCE) return;
-
-      lastX = x;
-      lastY = y;
-      spawn(x, y, Math.atan2(dy, dx));
-    });
-
-    // Re-entering the hero should not aim a rocket using the old position.
-    hero.addEventListener("pointerleave", () => {
-      lastX = null;
-      lastY = null;
-    });
-  }
-</script>

@@ -281,31 +281,3 @@ article.mdx-content > img {
   background: var(--surface);
 }
 
-/* Cursor trail: a rocket puffs into view at the pointer and lifts away. */
-@keyframes rocketTrail {
-  0%   { opacity: 0; transform: scale(0.45); }
-  18%  { opacity: 0.9; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.72) translateY(-22px); }
-}
-
-/*
- * Placement and aim live on the wrapper so the img is free to own the
- * scale/fade animation without the two transforms fighting each other.
- *
- * Sized by height, not width: every source shares a 456px-tall canvas but
- * varies in width, so matching widths would stretch the narrow letters
- * (an "i" is half the width of an "m") well out of scale with the rest.
- */
-.hero-trail-item {
-  position: absolute;
-  height: clamp(56px, 6vw, 92px);
-  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
-  will-change: transform;
-}
-
-.hero-trail-item img {
-  display: block;
-  height: 100%;
-  width: auto;
-  animation: rocketTrail 900ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-}
