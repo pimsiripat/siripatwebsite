@@ -7,6 +7,7 @@ interface Props {
       category: string;
       description: string;
       image: string;
+      video?: string;
     };
   };
   index?: number;
@@ -26,12 +27,26 @@ const isEven = index % 2 === 1;
   ]}>
     <!-- Image -->
     <div class="w-full md:flex-[1.3] relative aspect-[3/2] rounded-2xl overflow-hidden bg-surface">
-      <img
-        src={project.data.image}
-        alt={project.data.title}
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        loading="lazy"
-      />
+      {project.data.video ? (
+        <video
+          data-motion-video
+          src={project.data.video}
+          poster={project.data.image}
+          aria-label={project.data.title}
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        ></video>
+      ) : (
+        <img
+          src={project.data.image}
+          alt={project.data.title}
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          loading="lazy"
+        />
+      )}
     </div>
 
     <!-- Text -->
@@ -54,3 +69,7 @@ const isEven = index % 2 === 1;
     </div>
   </div>
 </a>
+
+<script>
+  import '../scripts/motion-video';
+</script>

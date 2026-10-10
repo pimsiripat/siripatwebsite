@@ -10,6 +10,8 @@ import TwoCol from '../../components/mdx/TwoCol.astro';
 import FigmaLink from '../../components/mdx/FigmaLink.astro';
 import ProjectImage from '../../components/mdx/ProjectImage.astro';
 import ImageCarousel from '../../components/mdx/ImageCarousel.astro';
+import MotionClip from '../../components/mdx/MotionClip.astro';
+import MotionPair from '../../components/mdx/MotionPair.astro';
 import { getCollection, render } from 'astro:content';
 import '../../styles/globals.css';
 
@@ -29,14 +31,14 @@ export async function getStaticPaths() {
 
 const { project, next } = Astro.props;
 const { Content, headings } = await render(project);
-const { title, description, category, heroImage, meta } = project.data;
+const { title, description, category, heroImage, heroVideo, image, meta } = project.data;
 const hasNext = next.id !== project.id;
 ---
 
 <Base
   title={`${title} - Case Study | Siripat`}
   description={description}
-  ogImage={heroImage}
+  ogImage={heroImage ?? image}
 >
   <Navbar client:load />
   <main class="min-h-screen bg-bg pt-20">
@@ -64,24 +66,42 @@ const hasNext = next.id !== project.id;
       </div>
     </section>
 
-    <!-- Hero Image -->
-    <section class="px-6 pb-12">
-      <div class="max-w-3xl mx-auto">
-        <div class="relative aspect-[16/9] rounded-2xl overflow-hidden bg-surface">
-          <img
-            src={heroImage}
-            alt={`${title} Mockup`}
-            class="absolute inset-0 w-full h-full object-cover"
-          />
+    <!-- Hero: a looping clip for motion work, otherwise the mockup image -->
+    {(heroVideo || heroImage) && (
+      <section class="px-6 pb-12">
+        <div class="max-w-3xl mx-auto">
+          {heroVideo ? (
+            <!-- Clips keep their own frame; a 16:9 crop would cut the animation off -->
+            <div class="relative aspect-[1440/1024] rounded-2xl overflow-hidden bg-surface">
+              <video
+                data-motion-video
+                src={heroVideo}
+                aria-label={title}
+                class="absolute inset-0 w-full h-full object-cover"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+            </div>
+          ) : (
+            <div class="relative aspect-[16/9] rounded-2xl overflow-hidden bg-surface">
+              <img
+                src={heroImage}
+                alt={`${title} Mockup`}
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          )}
         </div>
-      </div>
-    </section>
+      </section>
+    )}
 
     <TableOfContents headings={headings} />
 
     <!-- MDX Content -->
     <article class="mdx-content px-6 pb-16 overflow-x-hidden">
-      <Content components={{ Callout, Finding, StatsGrid, TwoCol, FigmaLink, ProjectImage, ImageCarousel }} />
+      <Content components={{ Callout, Finding, StatsGrid, TwoCol, FigmaLink, ProjectImage, ImageCarousel, MotionClip, MotionPair }} />
     </article>
 
     <!-- Where to go next -->
@@ -132,3 +152,7 @@ const hasNext = next.id !== project.id;
   </main>
   <Footer />
 </Base>
+
+<script>
+  import '../../scripts/motion-video';
+</script>

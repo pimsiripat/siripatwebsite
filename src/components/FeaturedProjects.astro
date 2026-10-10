@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
 
-const HOME_LIMIT = 3;
+const HOME_LIMIT = 4;
 
 const allProjects = (await getCollection('projects')).sort(
   (a, b) => a.data.order - b.data.order
